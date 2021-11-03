@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainboarderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sample.logincontroller">
+   <center>
+      <AnchorPane fx:id="loginpane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="728.0" layoutY="275.0" opacity="0.4" prefHeight="246.0" prefWidth="223.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;">
+               <children>
+                  <TextField fx:id="txtid" alignment="CENTER" layoutX="20.0" layoutY="95.0" prefHeight="22.0" prefWidth="186.0" promptText="User ID" />
+                  <PasswordField fx:id="txtpassword" alignment="CENTER" layoutX="20.0" layoutY="129.0" prefHeight="24.0" prefWidth="186.0" promptText="User Password" />
+                  <Button fx:id="btnlogin" alignment="CENTER" layoutX="28.0" layoutY="163.0" mnemonicParsing="false" onAction="#login" prefHeight="23.0" prefWidth="171.0" style="-fx-background-color: #00ff0000; -fx-border-color: 50;" text="Login">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lblconfirm" alignment="CENTER" layoutX="28.0" layoutY="193.0" prefHeight="26.0" prefWidth="171.0" text="Login false" textFill="RED">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="btnfindid" alignment="CENTER" layoutX="26.0" layoutY="223.0" onMouseClicked="#findid" prefHeight="14.0" prefWidth="84.0" text="아이디 찾기" />
+                  <Label fx:id="btnfindpassword" alignment="CENTER" layoutX="115.0" layoutY="223.0" onMouseClicked="#findpassword" prefHeight="14.0" prefWidth="90.0" text="비밀번호 찾기" />
+                  <Label fx:id="btnsignup" layoutX="154.0" layoutY="14.0" onMouseClicked="#signup" text="회원가입" />
+                  <Label layoutX="165.0" layoutY="62.0" text="Login" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
