@@ -125,6 +125,11 @@ public class MainpageController implements Initializable {
 
     @FXML
     void myinfo(ActionEvent event) {
+    	// 1. 알림창
+    	Alert alert = new Alert( AlertType.CONFIRMATION );
+    	alert.setContentText("로그아웃");
+    	alert.setHeaderText("로그아웃 하시겠습니까?");
+    	alert.setTitle("확인");
     	loadpage("myinfo");
     }
 
