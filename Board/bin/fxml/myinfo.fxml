@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="760.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MyinfoController">
+   <children>
+      <Label layoutX="56.0" layoutY="204.0" prefHeight="34.0" prefWidth="60.0" text="ID">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblid" layoutX="144.0" layoutY="202.0" prefHeight="34.0" prefWidth="136.0" text="Id">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblname" layoutX="144.0" layoutY="250.0" prefHeight="34.0" prefWidth="136.0" text="Name">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblemail" layoutX="144.0" layoutY="294.0" prefHeight="34.0" prefWidth="136.0" text="email">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TableView layoutX="342.0" layoutY="90.0" prefHeight="224.0" prefWidth="398.0" style="-fx-border-color: #ffffff;">
+        <columns>
+          <TableColumn prefWidth="49.0" style="-fx-background-color: #ffffff;" text="num" />
+          <TableColumn prefWidth="149.0" style="-fx-background-color: #ffffff;" text="Title" />
+            <TableColumn minWidth="3.0" prefWidth="149.0" style="-fx-background-color: #ffffff;" text="Date" />
+            <TableColumn prefWidth="49.0" style="-fx-background-color: #ffffff;" text="View" />
+        </columns>
+      </TableView>
+      <TableView layoutX="342.0" layoutY="352.0" prefHeight="224.0" prefWidth="398.0" style="-fx-border-color: #ffffff;">
+         <columns>
+            <TableColumn prefWidth="40.0" style="-fx-background-color: #ffffff;" text="num" />
+            <TableColumn prefWidth="119.0" style="-fx-background-color: #ffffff;" text="Name" />
+            <TableColumn prefWidth="66.0" style="-fx-background-color: #ffffff;" text="Brand" />
+            <TableColumn prefWidth="76.0" style="-fx-background-color: #ffffff;" text="Category" />
+            <TableColumn prefWidth="95.0" style="-fx-background-color: #ffffff;" text="Price" />
+         </columns>
+      </TableView>
+      <Label layoutX="342.0" layoutY="69.0" text="- My community" />
+      <Label layoutX="342.0" layoutY="328.0" text="- My Product" />
+      <Label fx:id="lblpoint" layoutX="143.0" layoutY="335.0" prefHeight="34.0" prefWidth="136.0" text="point">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="55.0" prefHeight="37.0" prefWidth="217.0" text="My Information">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="250.0" prefHeight="34.0" prefWidth="60.0" text="Name">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="297.0" prefHeight="34.0" prefWidth="60.0" text="Email">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="335.0" prefHeight="34.0" prefWidth="60.0" text="Point">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnupdate" layoutX="54.0" layoutY="408.0" mnemonicParsing="false" onAction="#update" prefHeight="43.0" prefWidth="243.0" text="UPDATE" />
+      <Button fx:id="btndelete" layoutX="54.0" layoutY="470.0" mnemonicParsing="false" onAction="#delete" prefHeight="43.0" prefWidth="243.0" text="DELETE" />
+   </children>
+</AnchorPane>

@@ -7,4 +7,5 @@ module asdasdasd {
 	opens app to javafx.graphics, javafx.fxml;
 	opens controller to javafx.graphics, javafx.fxml;
 	opens domain to javafx.graphics, javafx.fxml;
+	opens dao to javafx.graphics, javafx.fxml;
 }

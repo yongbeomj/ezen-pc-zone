@@ -20,35 +20,35 @@ public class MainpageController implements Initializable {
 		loadpage("home");
 	}
 	
-	@FXML
-    private Button btnchatting;
+	 @FXML
+	    private Button btnchatting;
 
-    @FXML
-    private Button btncommunity;
+	    @FXML
+	    private Button btncommunity;
 
-    @FXML
-    private Button btnhome;
+	    @FXML
+	    private Button btnhome;
 
-    @FXML
-    private Button btnlogout;
+	    @FXML
+	    private Button btnlogout;
 
-    @FXML
-    private Button btnmyinfo;
+	    @FXML
+	    private Button btnmyinfo;
 
-    @FXML
-    private Button btnproduct;
+	    @FXML
+	    private Button btnproduct;
 
-    @FXML
-    private AnchorPane cp;
+	    @FXML
+	    private AnchorPane cp;
 
-    @FXML
-    private Label lblloginid;
+	    @FXML
+	    private Label lblloginid;
 
-    @FXML
-    private AnchorPane lp;
+	    @FXML
+	    private AnchorPane lp;
 
-    @FXML
-    private BorderPane mainpageborderpane;
+	    @FXML
+	    private BorderPane mainpageborderpane;
 
     // °´Ã¼È­
     public static MainpageController instance;
