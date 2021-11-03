@@ -10,8 +10,7 @@ public class Appstart extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		// Parent parent = FXMLLoader.load(getClass().getResource("/fxml/boardlist.fxml"));
-		Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+		Parent parent = FXMLLoader.load(getClass().getResource("/fxml/mainpage.fxml"));
 		Scene scene = new Scene( parent );
 		
 		stage.setScene(scene);

@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -8,15 +9,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class MainpageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+//		lblloginid.setText( logincontroller.getinstance().getid() );
 		loadpage("home");
 	}
 	
@@ -90,7 +97,30 @@ public class MainpageController implements Initializable {
 
     @FXML
     void logout(ActionEvent event) {
-
+    	// 1. 알림창
+    	Alert alert = new Alert( AlertType.CONFIRMATION );
+    	alert.setContentText("로그아웃");
+    	alert.setHeaderText("로그아웃 하시겠습니까?");
+    	alert.setTitle("확인");
+    	
+    	Optional<ButtonType> optional = alert.showAndWait();
+    	if (optional.get() == ButtonType.OK) {
+    		// 2. main page 닫기
+        	btnlogout.getScene().getWindow().hide();
+        	try {
+        		// 3. login page 열기
+            	Stage stage = new Stage();
+            	Parent parent = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        		Scene scene = new Scene( parent );
+        		
+        		stage.setScene(scene);
+        			stage.setResizable(false);
+        			stage.setTitle("게시판");
+        		stage.show();
+        	} catch(Exception e) {}
+        	
+    	}
+    	
     }
 
     @FXML
