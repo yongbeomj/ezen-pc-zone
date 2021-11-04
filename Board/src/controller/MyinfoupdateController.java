@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.memberdao;
+import domain.member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,15 +55,15 @@ public class MyinfoupdateController implements Initializable {
     @FXML
     void update(ActionEvent event) {
     	
-//    	boolean result = memberdao.getmemberdao().update(lblid.getText(), txtname.getText(), txtemail.getText());
-//    	
-//    	if( result ) { 
-//    		Alert alert = new Alert(AlertType.INFORMATION); alert.setHeaderText("회원정보 수정 완료"); alert.showAndWait(); 
-//    		MainpageController.getinstance().loadpage("myinfo");
-//    	}
-//    	else { 
-//    		Alert alert = new Alert(AlertType.INFORMATION); alert.setHeaderText("회원정보 수정 오류"); alert.showAndWait();  
-//    	}
+    	boolean result = memberdao.getmemberdao().update(lblid.getText(), txtname.getText(), txtemail.getText());
+    	
+    	if( result ) { 
+    		Alert alert = new Alert(AlertType.INFORMATION); alert.setHeaderText("회원정보 수정 완료"); alert.showAndWait(); 
+    		MainpageController.getinstance().loadpage("myinfo");
+    	}
+    	else { 
+    		Alert alert = new Alert(AlertType.INFORMATION); alert.setHeaderText("회원정보 수정 오류"); alert.showAndWait();  
+    	}
     }
 	    
 	    
