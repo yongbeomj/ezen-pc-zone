@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="controller.MainpageController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="274.0" layoutY="96.0" text="사용시간">
          <font>
@@ -21,23 +21,23 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button layoutX="215.0" layoutY="207.0" mnemonicParsing="false" text="상품주문">
+      <Button fx:id="btnproductorder" layoutX="215.0" layoutY="207.0" mnemonicParsing="false" onAction="#productorder" text="상품주문">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Button layoutX="27.0" layoutY="207.0" mnemonicParsing="false" text="자리이동">
+      <Button fx:id="btnmove" layoutX="27.0" layoutY="207.0" mnemonicParsing="false" onAction="#move" text="자리이동">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Button layoutX="122.0" layoutY="207.0" mnemonicParsing="false" text="일시정지">
+      <Button fx:id="btnpause" layoutX="122.0" layoutY="207.0" mnemonicParsing="false" onAction="#pause" text="일시정지">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Button layoutX="413.0" layoutY="207.0" mnemonicParsing="false" text="로그아웃">
+      <Button fx:id="btnlogout" layoutX="413.0" layoutY="207.0" mnemonicParsing="false" onAction="#logout" text="로그아웃">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Button layoutX="308.0" layoutY="207.0" mnemonicParsing="false" text="관리자문의">
+      <Button fx:id="btnchatting" layoutX="308.0" layoutY="207.0" mnemonicParsing="false" onAction="#chatting" text="관리자문의">
          <font>
             <Font size="13.0" />
          </font></Button>
