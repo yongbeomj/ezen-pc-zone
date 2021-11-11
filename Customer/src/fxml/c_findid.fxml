@@ -15,7 +15,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button layoutX="22.0" layoutY="267.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="259.0" text="아이디 찾기" />
+      <Button fx:id="btnfindid" layoutX="22.0" layoutY="267.0" mnemonicParsing="false" onAction="#findid" prefHeight="37.0" prefWidth="259.0" text="아이디 찾기" />
       <Line endX="158.0" layoutX="122.0" layoutY="240.0" startX="-100.0" />
       <Label layoutX="104.0" layoutY="85.0" text="아이디 찾기">
          <font>

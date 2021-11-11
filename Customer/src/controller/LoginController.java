@@ -11,6 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -20,8 +23,7 @@ public class LoginController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		lblconfirm.setText("");
 	}
 
 	// 인스턴스화
@@ -33,51 +35,63 @@ public class LoginController implements Initializable {
 		return instance;
 	}
 	
-	@FXML
-	private Button btnfindid;
-	
-	@FXML
-	private Button btnlogin;
-	
+
     @FXML
-    private Button btnfindpassword;
-	
-	@FXML
-	private Button btnsignup;
-	
+    private Button btnfindid;
+
+    @FXML
+    private Button btnfindpw;
+
+    @FXML
+    private Button btnlogin;
+
+    @FXML
+    private Button btnsignup;
+
+    @FXML
+    private Label lblconfirm;
+
     @FXML
     private AnchorPane loginpane;
-	
-	@FXML
-	void findid(ActionEvent event) {
-		btnfindid.getScene().getWindow().hide();
+
+    @FXML
+    private TextField txtid;
+
+    @FXML
+    private PasswordField txtpassword;
+
+    @FXML
+    void findid(ActionEvent event) {
+    	btnfindid.getScene().getWindow().hide();
 		loadpage("c_findid");
-	}
-	
-	@FXML
-	void login(ActionEvent event) {
-		Alert alert = new Alert( AlertType.CONFIRMATION );
-    	alert.setContentText(" 로그인 ");
-    	alert.setHeaderText("로그인 성공");
-    	alert.setTitle("확인");
-    	alert.showAndWait();
+    }
+
+    @FXML
+    void findpw(ActionEvent event) {
+       	btnfindpw.getScene().getWindow().hide();
+    	loadpage("c_findpassword");
+    }
+
+    @FXML
+    void login(ActionEvent event) {
+		lblconfirm.setText(" 로그인 성공 [방문해주셔서 감사합니다] ");
+		
+//		Alert alert = new Alert( AlertType.CONFIRMATION );
+//    	alert.setContentText(" 로그인 ");
+//    	alert.setHeaderText("로그인 성공");
+//    	alert.setTitle("확인");
+//    	alert.showAndWait();
     	
     	btnlogin.getScene().getWindow().hide();
     	loadpage("c_mainpage");
 	}
-	
+
     @FXML
-    void findpassword(ActionEvent event) {
-    	btnfindpassword.getScene().getWindow().hide();
-    	loadpage("c_findpassword");
-    }
-    
-	@FXML
-	void signup(ActionEvent event) {
+    void signup(ActionEvent event) {
 		btnsignup.getScene().getWindow().hide();
 		loadpage("c_signup");
-	}
-	
+    }
+    
 	public void loadpage(String page) {
 		Stage stage = new Stage();
 		try {
@@ -90,6 +104,4 @@ public class LoginController implements Initializable {
 		catch (Exception e) {}
 		
 	}
-
-	    
 }
