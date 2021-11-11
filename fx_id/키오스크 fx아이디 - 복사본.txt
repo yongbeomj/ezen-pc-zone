@@ -1,0 +1,21 @@
+LoginController
+
+아이디 입력창  	: txtid
+비밀번호 입력창  	: txtpassword
+로그인 버튼 	: btnlogin		login
+회원가입 		: btnsignup  	signup    	
+사용자 아이디 라벨1~20      : lblid_1 , lblid_2, lblid_3 ,,, lblid_20
+사용자 남은시간  라벨1~20  : lbltimeremaining_1 , lbltimeremaining_2, lbltimeremaining_3 ,,, lbltimeremaining_20
+pc 버튼 1~20	           : btnpc_1 ,btnpc_2 , btnpc_3 ... btnpc_20
+
+MainController
+
+1천원 버튼 	: btnprice_1000	price_1000
+2천원 버튼 	: btnprice_2000	price_2000
+3천원 버튼 	: btnprice_3000	price_3000
+5천원 버튼 	: btnprice_5000	price_5000
+결제하기 버튼 	: btnpayment  	payment	
+취소하기 버튼	: btncancel	cancel
+사용자 아이디 라벨1~20      : lblid_1 , lblid_2, lblid_3 ,,, lblid_20
+사용자 남은시간  라벨1~20  : lbltimeremaining_1 , lbltimeremaining_2, lbltimeremaining_3 ,,, lbltimeremaining_20
+pc 버튼 1~20	           : btnpc_1 ,btnpc_2 , btnpc_3 ... btnpc_20
