@@ -1,0 +1,68 @@
+1. 胶虐付 积己
+
+create database ezenpzzone
+
+2. DB Table 积己
+
+create table ezenpczone.member(
+    m_no int auto_increment primary key ,
+    m_id varchar(45) not null ,
+    m_pw varchar(45) not null ,
+    m_name varchar(45) not null ,
+    m_email varchar(100) not null ,
+    m_phone varchar(45) not null ,
+    m_sex varchar(45) not null
+)
+
+create table ezenpczone.pc(
+	p_no int auto_increment primary key ,
+    p_ip int not null ,
+    p_port int not null ,
+    p_activation int not null ,
+    m_no int not null ,
+    foreign key(m_no) references member(m_no) on delete cascade
+)
+
+create table ezenpczone.timeorder(
+	to_no int not null auto_increment ,
+    to_price int not null ,
+    to_date timestamp default now() ,
+    m_no int not null ,
+    primary key(to_no, m_no) ,
+    foreign key(m_no) references member(m_no) on delete cascade
+)
+
+create table ezenpczone.product(
+	p_no int auto_increment primary key ,
+    p_category varchar(45) not null ,
+    p_name varchar(45) not null ,
+    p_contents varchar(3000) not null ,
+    p_price int not null ,
+    p_date timestamp default now() ,
+    p_img int not null
+)
+
+create table ezenpczone.time(
+	t_no int auto_increment primary key ,
+    t_usetime int not null ,
+    t_remaintime int not null ,
+    m_no int not null ,
+    foreign key(m_no) references timeorder(m_no) on delete cascade
+)
+
+create table ezenpczone.productorder(
+	po_no int auto_increment primary key ,
+    po_date int not null ,
+    po_price int not null ,
+    m_no int not null ,
+    foreign key(m_no) references member(m_no) on delete cascade
+)
+
+create table ezenpczone.orderdetail(
+	od_no int auto_increment primary key ,
+    po_no int not null ,
+    p_no int not null ,
+    od_count int not null ,
+    foreign key(po_no) references productorder(po_no) on delete cascade ,
+    foreign key(p_no) references product(p_no) on delete cascade 
+)
