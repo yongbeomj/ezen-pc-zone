@@ -1,4 +1,3 @@
 # javafx-project-board!
 
-
-https://user-images.githubusercontent.com/91528977/141252817-3fd76ecc-462c-4dbf-ba0b-7cb0f3755fe6.png
+![controller 구조](https://user-images.githubusercontent.com/91528977/141252930-469c57ef-914c-4e52-ac8f-602a59544ebb.png)
