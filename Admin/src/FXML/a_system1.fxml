@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SystemController">
+   <center>
+      <AnchorPane prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnmember" layoutX="105.0" layoutY="73.0" mnemonicParsing="false" onAction="#member" text="회원관리" />
+            <Button fx:id="btnsales" layoutX="197.0" layoutY="73.0" mnemonicParsing="false" onAction="#sales" text="매출관리" />
+            <Button fx:id="btnproduct" layoutX="296.0" layoutY="73.0" mnemonicParsing="false" onAction="#product" text="상품관리" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="69.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="310.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="558.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="69.0" layoutY="355.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="310.0" layoutY="355.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="558.0" layoutY="355.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="564.0" layoutY="572.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="69.0" layoutY="572.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="310.0" layoutY="572.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Button layoutX="844.0" layoutY="189.0" mnemonicParsing="false" text="채팅" />
+            <Button layoutX="844.0" layoutY="235.0" mnemonicParsing="false" text="고장처리" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
