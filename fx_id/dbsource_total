@@ -1,8 +1,8 @@
-1. 胶虐付 积己
 
-create database ezenpzzone
 
-2. DB Table 积己
+create database ezenpczone
+
+
 
 create table ezenpczone.member(
     m_no int auto_increment primary key ,
