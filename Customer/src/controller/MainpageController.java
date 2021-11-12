@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -11,6 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -30,7 +34,10 @@ public class MainpageController implements Initializable {
 		return instance;
 	}
 	
-	@FXML
+    @FXML
+    private Button btnchatting;
+
+    @FXML
     private Button btnlogout;
 
     @FXML
@@ -43,38 +50,75 @@ public class MainpageController implements Initializable {
     private Button btnproductorder;
 
     @FXML
-    private Button btnchatting;
+    private ImageView image1;
+
+    @FXML
+    private ImageView image2;
+
+    @FXML
+    private Label lblpcno;
+
+    @FXML
+    private Label lblprice;
+
+    @FXML
+    private Label lblremaintime;
+
+    @FXML
+    private Label lblusetime;
+
+    @FXML
+    void chatting(ActionEvent event) {
+    	loadpage("c_chatting");
+    }
 
     @FXML
     void logout(ActionEvent event) {
     	Alert alert = new Alert( AlertType.CONFIRMATION );
     	alert.setContentText(" 로그아웃 ");
     	alert.setHeaderText(" 로그아웃 하시겠습니까? ");
-    	alert.setTitle("확인");
-    	alert.showAndWait();
+    	alert.setTitle("로그아웃");
+    	// 알림창이 떴을 때 옵션(확인, 취소)에 따라 기능 다름
+    	Optional<ButtonType> optional = alert.showAndWait();
+    	if( optional.get() == ButtonType.OK ) { // 확인을 누르면
+    		btnlogout.getScene().getWindow().hide(); // 메인창을 끄고
+        	LoginController.getinstance().loadpage("c_login"); // 로그인 창 활성화
+    	}
     }
 
     @FXML
     void move(ActionEvent event) {
-    	
+    	Alert alert = new Alert( AlertType.CONFIRMATION );
+    	alert.setContentText(" 자리이동 ");
+    	alert.setHeaderText(" 자리이동 하시겠습니까? ");
+    	alert.setTitle("자리이동");
+    	// 알림창이 떴을 때 옵션(확인, 취소)에 따라 기능 다름
+    	Optional<ButtonType> optional = alert.showAndWait();
+    	if( optional.get() == ButtonType.OK ) {
+    		
+    	}
     }
 
     @FXML
     void pause(ActionEvent event) {
+    	Alert alert = new Alert( AlertType.CONFIRMATION );
+    	alert.setContentText(" 일시정지 ");
+    	alert.setHeaderText(" 일시정지 하시겠습니까? ");
+    	alert.setTitle("일시정지");
     	
+    	Optional<ButtonType> optional = alert.showAndWait();
+    	if( optional.get() == ButtonType.OK ) {
+    		btnlogout.getScene().getWindow().hide();
+        	LoginController.getinstance().loadpage("c_login");
+    	}
     }
 
     @FXML
     void productorder(ActionEvent event) {
     	loadpage("c_productorder");
     }
-
-    @FXML
-    void chatting(ActionEvent event) {
-    	loadpage("c_chatting");
-    }
     
-	public void loadpage(String page) {
+    public void loadpage(String page) {
 		Stage stage = new Stage();
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/"+page+".fxml"));
@@ -85,4 +129,6 @@ public class MainpageController implements Initializable {
 		}
 		catch (Exception e) {}
 	}
+	
+	
 }

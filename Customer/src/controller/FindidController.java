@@ -47,12 +47,14 @@ public class FindidController implements Initializable {
 
     @FXML
     void findid(ActionEvent event) {
+    	// 알림창
     	Alert alert = new Alert( AlertType.CONFIRMATION );
-    	alert.setContentText(" 아이디 찾기 ");
-    	alert.setHeaderText("아이디찾기 성공");
-    	alert.setTitle("확인");
+    	alert.setContentText("아이디 찾기 성공");
+    	alert.setHeaderText("고객님 아이디는 () 입니다");
+    	alert.setTitle("아이디 찾기");
     	alert.showAndWait();
     	// id 찾기 창 닫고 로그인 창 다시 열기
+    	btnfindid.getScene().getWindow().hide();
     	LoginController.getinstance().loadpage("c_login");
     }
 

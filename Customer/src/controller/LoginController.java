@@ -75,12 +75,6 @@ public class LoginController implements Initializable {
     @FXML
     void login(ActionEvent event) {
 		lblconfirm.setText(" 로그인 성공 [방문해주셔서 감사합니다] ");
-		
-//		Alert alert = new Alert( AlertType.CONFIRMATION );
-//    	alert.setContentText(" 로그인 ");
-//    	alert.setHeaderText("로그인 성공");
-//    	alert.setTitle("확인");
-//    	alert.showAndWait();
     	
     	btnlogin.getScene().getWindow().hide();
     	loadpage("c_mainpage");
@@ -102,6 +96,5 @@ public class LoginController implements Initializable {
 			stage.show();
 		}
 		catch (Exception e) {}
-		
 	}
 }
