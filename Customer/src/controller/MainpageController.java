@@ -124,7 +124,8 @@ public class MainpageController implements Initializable {
 			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/"+page+".fxml"));
 			Scene scene = new Scene( parent );
 			stage.setScene(scene);
-			stage.setResizable(false); 
+			stage.setResizable(false);
+			stage.setTitle("EZEN PC ZONE");
 			stage.show();
 		}
 		catch (Exception e) {}

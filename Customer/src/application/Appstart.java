@@ -15,6 +15,7 @@ public class Appstart extends Application {
 		
 		stage.setScene(scene);
 		stage.setResizable(false);
+		stage.setTitle("EZEN PC ZONE");
 		stage.show();
 	}
 	
