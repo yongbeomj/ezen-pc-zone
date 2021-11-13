@@ -46,9 +46,6 @@ public class LoginController implements Initializable {
     private Button btnlogin;
 
     @FXML
-    private Button btnsignup;
-
-    @FXML
     private Label lblconfirm;
 
     @FXML
@@ -72,6 +69,8 @@ public class LoginController implements Initializable {
     	loadpage("c_findpw");
     }
 
+    int m_no = 0;
+    
     @FXML
     void login(ActionEvent event) {
     	boolean result = MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
@@ -87,14 +86,10 @@ public class LoginController implements Initializable {
 		} else {
 			lblconfirm.setText(" 로그인 실패 [동일한 정보가 없습니다] ");
 		}
+		
+		
 	}
 
-    @FXML
-    void signup(ActionEvent event) {
-		btnsignup.getScene().getWindow().hide();
-		loadpage("c_signup");
-    }
-    
 	public void loadpage(String page) {
 		Stage stage = new Stage();
 		try {
@@ -111,4 +106,14 @@ public class LoginController implements Initializable {
 	public String getid() {
 		return txtid.getText();
 	}
+	
+	public int getno() {
+		boolean login = MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
+    	if(login) {
+    		return m_no = MemberDao.getMemberDao().findno(txtid.getText());
+    	}else {
+    		return 0;
+    	}
+	}
+	
 }

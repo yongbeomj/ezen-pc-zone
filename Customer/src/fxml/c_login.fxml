@@ -24,9 +24,8 @@
       <PasswordField fx:id="txtpassword" layoutX="132.0" layoutY="177.0" prefHeight="30.0" prefWidth="153.0" promptText="Password" />
       <Line endX="158.0" layoutX="122.0" layoutY="115.0" startX="-100.0" />
       <Button fx:id="btnlogin" layoutX="22.0" layoutY="234.0" mnemonicParsing="false" onAction="#login" prefHeight="37.0" prefWidth="259.0" text="로그인" />
-      <Button fx:id="btnsignup" layoutX="22.0" layoutY="329.0" mnemonicParsing="false" onAction="#signup" prefHeight="37.0" prefWidth="74.0" text="회원가입" />
-      <Button fx:id="btnfindid" layoutX="115.0" layoutY="329.0" mnemonicParsing="false" onAction="#findid" prefHeight="37.0" prefWidth="74.0" text="ID찾기" />
-      <Button fx:id="btnfindpw" layoutX="209.0" layoutY="329.0" mnemonicParsing="false" onAction="#findpw" prefHeight="37.0" prefWidth="74.0" text="PW찾기" />
+      <Button fx:id="btnfindid" layoutX="21.0" layoutY="329.0" mnemonicParsing="false" onAction="#findid" prefHeight="37.0" prefWidth="114.0" text="ID찾기" />
+      <Button fx:id="btnfindpw" layoutX="166.0" layoutY="329.0" mnemonicParsing="false" onAction="#findpw" prefHeight="37.0" prefWidth="114.0" text="PW찾기" />
       <Line endX="158.0" layoutX="121.0" layoutY="313.0" startX="-100.0" />
       <Label fx:id="lblconfirm" alignment="CENTER" layoutX="21.0" layoutY="284.0" prefHeight="18.0" prefWidth="259.0" text="로그인 실패 [ 동일한 정보가 없습니다 ]" textFill="RED">
          <font>

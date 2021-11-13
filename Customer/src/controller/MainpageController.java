@@ -4,6 +4,12 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
+import dao.PcDao;
+import dao.TimeDao;
+import domain.Member;
+import domain.Pc;
+import domain.Time;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +28,10 @@ public class MainpageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		// 로그인 id 호출
+		String loginid = LoginController.getinstance().getid();
+		lblloginid.setText(loginid);
+		lblpcno.setText(LoginController.getinstance().getno()+"");
 		
 	}
 	
@@ -57,6 +67,9 @@ public class MainpageController implements Initializable {
 
     @FXML
     private Label lblpcno;
+    
+    @FXML
+    private Label lblloginid;
 
     @FXML
     private Label lblprice;
@@ -67,6 +80,7 @@ public class MainpageController implements Initializable {
     @FXML
     private Label lblusetime;
 
+    
     @FXML
     void chatting(ActionEvent event) {
     	loadpage("c_chatting");
@@ -95,7 +109,7 @@ public class MainpageController implements Initializable {
     	// 알림창이 떴을 때 옵션(확인, 취소)에 따라 기능 다름
     	Optional<ButtonType> optional = alert.showAndWait();
     	if( optional.get() == ButtonType.OK ) {
-    		
+    		// 시간 멈춤
     	}
     }
 

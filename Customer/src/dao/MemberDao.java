@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import domain.Member;
+
 public class MemberDao {
 
 	// 필드
@@ -79,5 +81,23 @@ public class MemberDao {
 			} catch (Exception e) {}
 			return null;
 		} 
+		
+		// 4. 회원 코드 조회
+		public int findno (String loginid) {
+			
+			String sql = "select m_no from member where m_id=?";
+			try {
+				preparedStatement=connection.prepareStatement(sql);
+				preparedStatement.setString(1, loginid);
+				resultSet=preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					return resultSet.getInt(1);
+				}else {
+					return 0;
+				}
+			}catch (Exception e) {
+				return 0;
+			}
+		}
 		
 }
