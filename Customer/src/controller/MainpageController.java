@@ -109,6 +109,8 @@ public class MainpageController implements Initializable {
     	// 알림창이 떴을 때 옵션(확인, 취소)에 따라 기능 다름
     	Optional<ButtonType> optional = alert.showAndWait();
     	if( optional.get() == ButtonType.OK ) {
+    		btnmove.getScene().getWindow().hide();
+        	loadpage("c_move");
     		// 시간 멈춤
     	}
     }
