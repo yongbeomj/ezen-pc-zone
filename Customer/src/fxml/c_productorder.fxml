@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="controller.ProductorderController" fx:id="productorderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="productorderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductorderController">
    <children>
       <TableView fx:id="productlist" layoutX="735.0" layoutY="273.0" prefHeight="305.0" prefWidth="412.0">
         <columns>
@@ -43,30 +43,114 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Line endX="1083.0" endY="6.0" layoutX="101.0" layoutY="226.0" startX="-100.0" />
+      <Line endX="1083.0" endY="6.0" layoutX="99.0" layoutY="220.0" startX="-79.0" startY="6.0" />
       <Label layoutX="42.0" layoutY="24.0" text="Best Menu">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="bmpane" layoutX="50.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
+      <AnchorPane layoutX="50.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
          <children>
-            <ImageView fx:id="imgproductbm" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgbm1" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <Label layoutX="42.0" layoutY="233.0" text="Menu">
+      <Label layoutX="42.0" layoutY="236.0" text="Menu">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="42.0" layoutY="255.0" prefHeight="536.0" prefWidth="690.0">
+      <AnchorPane layoutX="38.0" layoutY="254.0" prefHeight="536.0" prefWidth="690.0">
          <children>
-            <AnchorPane fx:id="menupane" layoutX="8.0" layoutY="7.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+            <AnchorPane layoutX="8.0" layoutY="21.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
                <children>
-                  <ImageView fx:id="imgproductmenu" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgmenu1" fitHeight="120.0" fitWidth="120.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
-            <RadioButton layoutX="40.0" layoutY="134.0" mnemonicParsing="false" text="상품명" />
+            <RadioButton fx:id="lblmenu1" layoutX="40.0" layoutY="148.0" mnemonicParsing="false" onAction="#memu1" text="상품명" />
+            <AnchorPane layoutX="145.0" layoutY="21.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu2" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu2" layoutX="177.0" layoutY="148.0" mnemonicParsing="false" onAction="#memu2" text="상품명" />
+            <AnchorPane layoutX="284.0" layoutY="21.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu3" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu3" layoutX="316.0" layoutY="148.0" mnemonicParsing="false" onAction="#memu3" text="상품명" />
+            <AnchorPane layoutX="423.0" layoutY="21.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu4" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu4" layoutX="455.0" layoutY="148.0" mnemonicParsing="false" onAction="#memu4" text="상품명" />
+            <AnchorPane layoutX="559.0" layoutY="21.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu5" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu5" layoutX="591.0" layoutY="148.0" mnemonicParsing="false" onAction="#memu5" text="상품명" />
+            <AnchorPane layoutX="8.0" layoutY="199.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu6" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu6" layoutX="40.0" layoutY="326.0" mnemonicParsing="false" onAction="#memu6" text="상품명" />
+            <AnchorPane layoutX="145.0" layoutY="199.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu7" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu7" layoutX="177.0" layoutY="326.0" mnemonicParsing="false" onAction="#memu7" text="상품명" />
+            <AnchorPane layoutX="284.0" layoutY="199.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu8" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu8" layoutX="316.0" layoutY="326.0" mnemonicParsing="false" onAction="#memu8" text="상품명" />
+            <AnchorPane layoutX="423.0" layoutY="199.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu9" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu9" layoutX="455.0" layoutY="326.0" mnemonicParsing="false" onAction="#memu9" text="상품명" />
+            <AnchorPane layoutX="559.0" layoutY="199.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu10" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu10" layoutX="591.0" layoutY="326.0" mnemonicParsing="false" onAction="#memu10" text="상품명" />
+            <AnchorPane layoutX="9.0" layoutY="374.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu11" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu11" layoutX="41.0" layoutY="501.0" mnemonicParsing="false" onAction="#memu11" text="상품명" />
+            <AnchorPane layoutX="146.0" layoutY="374.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu12" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu12" layoutX="178.0" layoutY="501.0" mnemonicParsing="false" onAction="#memu12" text="상품명" />
+            <AnchorPane layoutX="285.0" layoutY="374.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu13" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu13" layoutX="317.0" layoutY="501.0" mnemonicParsing="false" onAction="#memu13" text="상품명" />
+            <AnchorPane layoutX="424.0" layoutY="374.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu14" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu14" layoutX="456.0" layoutY="501.0" mnemonicParsing="false" onAction="#memu14" text="상품명" />
+            <AnchorPane layoutX="560.0" layoutY="374.0" prefHeight="120.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+               <children>
+                  <ImageView fx:id="imgmenu15" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="lblmenu15" layoutX="592.0" layoutY="501.0" mnemonicParsing="false" onAction="#memu15" text="상품명" />
          </children>
       </AnchorPane>
       <Label layoutX="734.0" layoutY="246.0" text="주문 목록">
@@ -80,5 +164,30 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="235.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
+         <children>
+            <ImageView fx:id="imgbm2" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="427.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
+         <children>
+            <ImageView fx:id="imgbm3" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="612.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
+         <children>
+            <ImageView fx:id="imgbm4" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="803.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
+         <children>
+            <ImageView fx:id="imgbm5" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="988.0" layoutY="57.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #000000;">
+         <children>
+            <ImageView fx:id="imgbm6" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

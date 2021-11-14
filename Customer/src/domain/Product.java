@@ -20,8 +20,7 @@ public class Product {
 	public Product() {}
 	
 	public Product(int p_no, String p_name, String p_img, String p_contents, String p_category, int p_count,
-			int p_price, int p_activation, String p_date, int m_no, String activation) {
-		super();
+			int p_price, int p_activation, String p_date, int m_no) {
 		this.p_no = p_no;
 		this.p_name = p_name;
 		this.p_img = p_img;
@@ -32,7 +31,6 @@ public class Product {
 		this.p_activation = p_activation;
 		this.p_date = p_date;
 		this.m_no = m_no;
-		this.activation = activation;
 		
 		if (p_activation == 0) {
 			activation = "재고없음";

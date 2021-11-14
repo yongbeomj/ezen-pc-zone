@@ -22,10 +22,9 @@ public class ProductDao {
 	public ProductDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC", "root",
-					"1234");
-		} catch (Exception e) {
-		}
+			connection = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3307/ezenpczone?serverTimezone=UTC", "root", "1234");
+		} catch (Exception e) {}
 	}
 
 	// 메소드
@@ -51,7 +50,8 @@ public class ProductDao {
 						resultSet.getInt(6),
 						resultSet.getInt(7),
 						resultSet.getInt(8),
-						resultSet.getString(9), 0, sql);
+						resultSet.getString(9),
+						resultSet.getInt(10));
 				// 객체 리스트 저장
 				products.add(product);
 			}
