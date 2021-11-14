@@ -2,16 +2,16 @@ package domain;
 
 public class Pc {
 
-	 private int p_no ;
-	 private String p_ip;
-	 private int p_port ;
-	 private int p_activation;
-	 private int m_no;
-	 
-	 public Pc() {}
+	// 필드
+	private int p_no;
+	private String p_ip;
+	private int p_port;
+	private int p_activation;
+	private int m_no;
 
+	// 생성자
+	public Pc() {}
 	public Pc(String p_ip, int p_port, int p_activation, int m_no) {
-		super();
 		this.p_ip = p_ip;
 		this.p_port = p_port;
 		this.p_activation = p_activation;
@@ -19,7 +19,6 @@ public class Pc {
 	}
 
 	public Pc(int p_no, int m_no) {
-		super();
 		this.p_no = p_no;
 		this.m_no = m_no;
 	}
@@ -63,9 +62,5 @@ public class Pc {
 	public void setP_no(int p_no) {
 		this.p_no = p_no;
 	}
-	 
-	 
-	 
-	 
-	 
+
 }

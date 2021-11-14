@@ -27,6 +27,7 @@ public class LoginController implements Initializable {
 		lblconfirm.setText("");
 	}
 
+
 	// 인스턴스화
 	private static LoginController instance;
 	public LoginController() {
@@ -103,17 +104,8 @@ public class LoginController implements Initializable {
 		catch (Exception e) {}
 	}
 	
-	public String getid() {
+	public String getloginid() {
 		return txtid.getText();
-	}
-	
-	public int getno() {
-		boolean login = MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
-    	if(login) {
-    		return m_no = MemberDao.getMemberDao().findno(txtid.getText());
-    	}else {
-    		return 0;
-    	}
 	}
 	
 }

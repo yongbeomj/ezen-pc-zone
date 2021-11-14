@@ -39,7 +39,10 @@ public class MoveController implements Initializable {
 		}
 		catch (Exception e) {}
 	}
-    
+    @FXML
+    void pc_1(ActionEvent event) {
+    	lblafterpc.setText("PC1");
+    }
     @FXML
     private BorderPane borderpane;
 

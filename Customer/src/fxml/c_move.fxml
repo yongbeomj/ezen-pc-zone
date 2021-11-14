@@ -15,14 +15,17 @@
             <Line endX="-108.0" endY="602.0" layoutX="477.0" layoutY="112.0" startX="-108.0" startY="1.0" />
             <Group fx:id="g1" layoutX="402.0" layoutY="91.0" onMouseClicked="#mcg1">
                <children>
-                  <Button fx:id="btnpc_1" disable="true" mnemonicParsing="false" prefHeight="113.0" prefWidth="165.0" style="-fx-background-color: #008000;" />
-                  <Label layoutX="9.0" layoutY="11.0" text="1번 PC" />
+                  <Button fx:id="btnpc_1" disable="true" mnemonicParsing="false" onAction="#pc_1" prefHeight="113.0" prefWidth="165.0" style="-fx-background-color: #008000;" text="버튼" textFill="GREEN">
+                     <font>
+                        <Font size="44.0" />
+                     </font></Button>
+                  <Label layoutX="9.0" layoutY="11.0" prefHeight="16.0" prefWidth="38.0" text="1번 PC" />
                   <Label fx:id="lblid_1" alignment="CENTER_RIGHT" layoutX="61.0" layoutY="2.0" prefHeight="33.0" prefWidth="100.0" text="사용자 아이디">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbltimeremaining_1" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="35.0" prefHeight="25.0" prefWidth="125.0" text="사용 가능">
+                  <Label fx:id="lbltimeremaining_1" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="35.0" prefHeight="21.0" prefWidth="125.0" text="사용 가능">
                      <font>
                         <Font size="13.0" />
                      </font>

@@ -10,7 +10,7 @@ import domain.Pc;
 
 public class PcDao {
 
-	
+	// 필드
 	private Connection connection ; 
 	private PreparedStatement preparedStatement; 
 	private ResultSet resultSet; 
@@ -18,8 +18,8 @@ public class PcDao {
 	private static PcDao pcDao = new PcDao();
 	
 	public static PcDao getPcDao() { return pcDao; }
-	
-	
+
+	// 생성자
 	public PcDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -32,6 +32,22 @@ public class PcDao {
 		}
 	}
 	
+	// 메소드
+	public int pcnocheck(int m_no) {
+		String sql = "select p_no from pc where m_no = ?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, m_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {
+		}
+		return 0;
+	}
 	//pc 자리설정
 	public void pcset(int p_no , int m_no ) {
 		String sql =  "update pc set m_no=?, p_activation=? where p_no=?";
