@@ -28,10 +28,17 @@ public class MainpageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// 로그인 id 호출
-		String loginid = LoginController.getinstance().getid();
+		// 로그인 id 조회
+		String loginid = LoginController.getinstance().getloginid();
 		lblloginid.setText(loginid);
-		lblpcno.setText(LoginController.getinstance().getno()+"");
+		// m_no 조회
+		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+		// m_no의 pc_no 조회
+		
+		
+		// m_no의 usetime 조회
+		
+		// m_no의 remaintime 조회
 		
 	}
 	
@@ -131,6 +138,7 @@ public class MainpageController implements Initializable {
 
     @FXML
     void productorder(ActionEvent event) {
+    	btnproductorder.getScene().getWindow().hide();
     	loadpage("c_productorder");
     }
     
