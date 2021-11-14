@@ -4,15 +4,15 @@ public class Time {
 
 	// 필드
 	private int t_usetime;
-	private int t_remaintiome;
+	private int t_remaintime;
 	private int m_no;
 	
 	// 생성자
 	public Time() {}
 
-	public Time(int t_usetime, int t_remaintiome, int m_no) {
+	public Time(int t_usetime, int t_remaintime, int m_no) {
 		this.t_usetime = t_usetime;
-		this.t_remaintiome = t_remaintiome;
+		this.t_remaintime = t_remaintime;
 		this.m_no = m_no;
 	}
 
@@ -25,12 +25,12 @@ public class Time {
 		this.t_usetime = t_usetime;
 	}
 
-	public int getT_remaintiome() {
-		return t_remaintiome;
+	public int getT_remaintime() {
+		return t_remaintime;
 	}
 
-	public void setT_remaintiome(int t_remaintiome) {
-		this.t_remaintiome = t_remaintiome;
+	public void setT_remaintime(int t_remaintime) {
+		this.t_remaintime = t_remaintime;
 	}
 
 	public int getM_no() {
@@ -40,7 +40,6 @@ public class Time {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	
-	
+
 	
 }

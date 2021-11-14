@@ -40,9 +40,14 @@ public class MainpageController implements Initializable {
 		System.out.println(p_no);
 		lblpcno.setText(p_no + "");
 		// m_no의 usetime 조회
-		
+		int t_usetime = TimeDao.getTimeDao().usetimecheck(m_no);
+		lblusetime.setText(t_usetime + "");
 		// m_no의 remaintime 조회
+		int t_remaintime = TimeDao.getTimeDao().remaintimecheck(m_no);
+		lblremaintime.setText(t_remaintime + "");
 		
+		// m_no의 남은 요금 조회
+		lblprice.setText(""); // 임시
 	}
 	
 	// 인스턴스화

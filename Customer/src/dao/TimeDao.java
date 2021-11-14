@@ -30,6 +30,38 @@ public class TimeDao {
 		return timeDao;
 	}
 
+	// 사용시간 조회
+	public int usetimecheck(int usetime) {
+		String sql = "select t_usetime from time where m_no = ?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, usetime);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {}
+		return 0;
+	}
+	
+	// 남은시간 조회
+	public int remaintimecheck(int remaintime) {
+		String sql = "select t_remaintime from time where m_no = ?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, remaintime);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {}
+		return 0;
+	}
+	
 	// 사용 시간
 	public int usetime(int m_no) {
 		String sql = "select t_usetime from time where m_no = ?";

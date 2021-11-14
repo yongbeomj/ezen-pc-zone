@@ -9,11 +9,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainpageController">
    <children>
-      <Label fx:id="lblusetime" layoutX="274.0" layoutY="96.0" text="사용시간">
+      <Label layoutX="274.0" layoutY="96.0" text="사용시간">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="lblremaintime" layoutX="274.0" layoutY="128.0" text="남은시간">
+      <Label layoutX="274.0" layoutY="128.0" text="남은시간">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -74,6 +74,21 @@
       <Label fx:id="lblpcno" layoutX="302.0" layoutY="50.0" prefHeight="14.0" prefWidth="40.0" text="01">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblremaintime" layoutX="379.0" layoutY="128.0" text="10000">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblprice" layoutX="379.0" layoutY="160.0" text="10000">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblusetime" layoutX="379.0" layoutY="96.0" text="10000">
+         <font>
+            <Font size="14.0" />
          </font>
       </Label>
    </children>
