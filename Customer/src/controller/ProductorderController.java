@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -35,21 +36,39 @@ public class ProductorderController implements Initializable {
 		// m_no 조회
 		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
 		System.out.println(m_no);
-		// 내가 등록한 제품 가져오기
-		ObservableList<Product> products = ProductDao.getProductDao().productlist();
-		System.out.println("가져오기 성공");
-		// 테이블 뷰에 리스트 삽입
-		productlist.setItems(products);
-		TableColumn tc = productlist.getColumns().get(0);
-			tc.setCellValueFactory(new PropertyValueFactory<>("p_no"));
-		tc = productlist.getColumns().get(1);
-			tc.setCellValueFactory(new PropertyValueFactory<>("p_name"));
-		tc = productlist.getColumns().get(2);
-			tc.setCellValueFactory(new PropertyValueFactory<>("p_count"));
-		tc = productlist.getColumns().get(3);
-			tc.setCellValueFactory(new PropertyValueFactory<>("p_price"));
+		
+		Button[] buttons = new Button[30];         // 버튼 30개 저장소 
+	      int z = 0;
+	      for( int i = 0 ; i<30 ; i++ ) {
+	         
+	         buttons[i] = new Button("좌석" + String.format("%02d", i) );      // 메모리 할당 
+	         buttons[i].setLayoutX( 30 + (z*60) );
+	         
+	         if( i % 10 == 0 ) z = 0;
+	         if( i / 10 == 1 ) {
+	            buttons[i].setLayoutX( 30 + (z*60) );
+	            buttons[i].setLayoutY( 50 );
+	         }
+	         if( i / 20 == 1 ) {
+	            buttons[i].setLayoutX( 30 + (z*60) );
+	            buttons[i].setLayoutY( 100 );
+	         }
+	         buttons[i].setOnAction( e -> {
+	            System.out.println( e.toString() +"좌석이 선택 되었습니다 ");
+	         });
+	      
+	         productorderpane.getChildren().add(buttons[i] ); // 배치 
+	         z++;
+	      }
+	      
+	      Image[] images = new Image[30];
+	      
+	      
+		
 	}
 
+	
+    
     @FXML
     private Button btncountchange;
 
