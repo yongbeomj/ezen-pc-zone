@@ -1,8 +1,13 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
+import dao.PcDao;
+import dao.TimeDao;
+import domain.Pc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +28,33 @@ public class MoveController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lblprepc.setText("1");
+		// 로그인 id 조회
+		String loginid = LoginController.getinstance().getloginid();
+		// m_no 조회
+		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+		// m_no의 pc_no 조회
+		int p_no = PcDao.getPcDao().pcnocheck(m_no);
+		lblprepc.setText("No." + p_no);
 		lblafterpc.setText("");
+		
+		// 사용 중 pc 확인
+		Button[] pcbuttons = {  null, btnpc_1 ,btnpc_2 ,btnpc_3 ,btnpc_4 ,btnpc_5 ,btnpc_6 ,btnpc_7 ,btnpc_8 ,btnpc_9 ,btnpc_10 
+				,btnpc_11  ,btnpc_12  ,btnpc_13,btnpc_14,btnpc_15,btnpc_16,btnpc_17,btnpc_18,btnpc_19,btnpc_20};
+		Label[] pcids = { null,lblid_1,lblid_2,lblid_3,lblid_4,lblid_5,lblid_6,lblid_7,lblid_8,lblid_9,lblid_10
+				,lblid_11,lblid_12,lblid_13,lblid_14,lblid_15,lblid_16,lblid_17,lblid_18,lblid_19,lblid_20};
+		Label[] lbltimes = { null,lbltimeremaining_1,lbltimeremaining_2,lbltimeremaining_3,lbltimeremaining_4,lbltimeremaining_5,lbltimeremaining_6,lbltimeremaining_7
+				,lbltimeremaining_8,lbltimeremaining_9,lbltimeremaining_10,lbltimeremaining_11,lbltimeremaining_12,lbltimeremaining_13,lbltimeremaining_14,lbltimeremaining_15
+				,lbltimeremaining_16,lbltimeremaining_17,lbltimeremaining_18,lbltimeremaining_19,lbltimeremaining_20};
+		ArrayList<Pc> pcactlist = PcDao.getPcDao().pcactivation_List();
+		
+		for(Pc temp : pcactlist) {
+			// 색 변경
+			pcbuttons[temp.getP_no()].setStyle("-fx-background-color: #ff0000; ");
+			// id 표시
+			pcids[temp.getP_no()].setText(MemberDao.getMemberDao().midcheck(temp.getM_no()));
+			// pc사용여부 표시
+			lbltimes[temp.getP_no()].setText("사용 중");
+		}
 	}
     
     public void loadpage(String page) {

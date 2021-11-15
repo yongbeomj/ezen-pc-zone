@@ -103,5 +103,18 @@ public class MemberDao {
 		}
 		return 0;
 	}
+	// 5. 회원 아이디 조회
+	public String midcheck( int m_no) {
+		String sql = "select m_id from member where m_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, m_no);
+			resultSet = preparedStatement.executeQuery();
+			if( resultSet.next() ) { return resultSet.getString(1); } // 현재 아이디가 존재하면
+			else { return ""; }
+		}
+		catch (Exception e) {}
+		return "";  
+	}
 
 }
