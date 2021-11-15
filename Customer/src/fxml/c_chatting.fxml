@@ -8,15 +8,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="controller.ChattingController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="274.0" layoutY="407.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="58.0" text="보내기" />
+      <Button fx:id="btnsend" layoutX="274.0" layoutY="407.0" mnemonicParsing="false" onAction="#msgsend" prefHeight="29.0" prefWidth="58.0" text="보내기" />
       <Label layoutX="22.0" layoutY="54.0" text="회원 아이디">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="184.0" layoutY="54.0" text="PC 번호">
+      <Label layoutX="217.0" layoutY="54.0" text="PC 번호">
          <font>
             <Font size="14.0" />
          </font>
@@ -27,7 +27,17 @@
          </font>
       </Label>
       <Line endX="210.0" layoutX="123.0" layoutY="46.0" startX="-100.0" />
-      <TextArea editable="false" layoutX="21.0" layoutY="81.0" prefHeight="320.0" prefWidth="311.0" />
-      <TextField layoutX="21.0" layoutY="407.0" prefHeight="29.0" prefWidth="245.0" />
+      <TextArea fx:id="txtclient" editable="false" layoutX="21.0" layoutY="81.0" prefHeight="320.0" prefWidth="311.0" />
+      <TextField fx:id="txtcontents" layoutX="21.0" layoutY="407.0" onAction="#entersend" prefHeight="29.0" prefWidth="245.0" />
+      <Label fx:id="lblid" layoutX="104.0" layoutY="54.0" prefHeight="18.0" prefWidth="74.0" text="ID">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblpcno" layoutX="279.0" layoutY="54.0" text="PCNO">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -31,13 +31,10 @@ public class MainpageController implements Initializable {
 		// 로그인 id 조회
 		String loginid = LoginController.getinstance().getloginid();
 		lblloginid.setText(loginid);
-		System.out.println(loginid);
 		// m_no 조회
 		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
-		System.out.println(m_no);
 		// m_no의 pc_no 조회
 		int p_no = PcDao.getPcDao().pcnocheck(m_no);
-		System.out.println(p_no);
 		lblpcno.setText(p_no + "");
 		// m_no의 usetime 조회
 		int t_usetime = TimeDao.getTimeDao().usetimecheck(m_no);
@@ -45,7 +42,6 @@ public class MainpageController implements Initializable {
 		// m_no의 remaintime 조회
 		int t_remaintime = TimeDao.getTimeDao().remaintimecheck(m_no);
 		lblremaintime.setText(t_remaintime + "");
-		
 		// m_no의 남은 요금 조회
 		lblprice.setText(""); // 임시
 	}
