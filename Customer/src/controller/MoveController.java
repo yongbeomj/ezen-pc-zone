@@ -69,10 +69,32 @@ public class MoveController implements Initializable {
 		}
 		catch (Exception e) {}
 	}
+    // 로그인 id 조회
+ 		String loginid = LoginController.getinstance().getloginid();
+ 		// m_no 조회
+ 		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+ 		// m_no의 pc_no 조회
+ 		int p_no = PcDao.getPcDao().pcnocheck(m_no);
+ 		int pc = 0;
+ 		
     @FXML
-    void pc_1(ActionEvent event) {
-    	lblafterpc.setText("PC1");
+    void move(ActionEvent event) {
+    	// 자리이동을 누르면
+    	PcDao.getPcDao().pclogout(p_no, m_no);
+    	PcDao.getPcDao().pclogin(pc, m_no);
+    	// 지금 pc 로그아웃
+    	
+    	// 이동 pc 사용 중으로 색 바뀜
+    	
+    	Alert alert = new Alert( AlertType.CONFIRMATION );
+    	alert.setHeaderText(" 자리이동 되었습니다 ");
+    	alert.setTitle("자리이동");
+    	alert.showAndWait();
+    	
+    	btnmove.getScene().getWindow().hide();
+    	loadpage("c_login");
     }
+    
     @FXML
     private BorderPane borderpane;
 
@@ -331,113 +353,124 @@ public class MoveController implements Initializable {
     @FXML
     void mcg1(MouseEvent event) {
     	lblafterpc.setText("No.1");
+    	pc = 1;
     }
 
     @FXML
     void mcg10(MouseEvent event) {
     	lblafterpc.setText("No.10");
+    	pc = 10;
     }
 
     @FXML
     void mcg11(MouseEvent event) {
     	lblafterpc.setText("No.11");
+    	pc = 11;
     }
 
     @FXML
     void mcg12(MouseEvent event) {
     	lblafterpc.setText("No.12");
+    	pc = 12;
     }
 
     @FXML
     void mcg13(MouseEvent event) {
     	lblafterpc.setText("No.13");
+    	pc = 13;
     }
 
     @FXML
     void mcg14(MouseEvent event) {
     	lblafterpc.setText("No.14");
+    	pc = 14;
     }
 
     @FXML
     void mcg15(MouseEvent event) {
     	lblafterpc.setText("No.15");
+    	pc = 15;
     }
 
     @FXML
     void mcg16(MouseEvent event) {
     	lblafterpc.setText("No.16");
+    	pc = 16;
     }
 
     @FXML
     void mcg17(MouseEvent event) {
     	lblafterpc.setText("No.17");
+    	pc = 17;
     }
 
     @FXML
     void mcg18(MouseEvent event) {
     	lblafterpc.setText("No.18");
+    	pc = 18;
     }
 
     @FXML
     void mcg19(MouseEvent event) {
     	lblafterpc.setText("No.19");
+    	pc = 19;
     }
 
     @FXML
     void mcg2(MouseEvent event) {
     	lblafterpc.setText("No.2");
+    	pc = 2;
     }
 
     @FXML
     void mcg20(MouseEvent event) {
     	lblafterpc.setText("No.20");
+    	pc = 20;
     }
 
     @FXML
     void mcg3(MouseEvent event) {
     	lblafterpc.setText("No.3");
+    	pc = 3;
     }
 
     @FXML
     void mcg4(MouseEvent event) {
     	lblafterpc.setText("No.4");
+    	pc = 4;
     }
 
     @FXML
     void mcg5(MouseEvent event) {
     	lblafterpc.setText("No.5");
+    	pc = 5;
     }
 
     @FXML
     void mcg6(MouseEvent event) {
     	lblafterpc.setText("No.6");
+    	pc = 6;
     }
 
     @FXML
     void mcg7(MouseEvent event) {
     	lblafterpc.setText("No.7");
+    	pc = 7;
     }
 
     @FXML
     void mcg8(MouseEvent event) {
     	lblafterpc.setText("No.8");
+    	pc = 8;
     }
 
     @FXML
     void mcg9(MouseEvent event) {
     	lblafterpc.setText("No.9");
+    	pc = 9;
     }
 
-    @FXML
-    void move(ActionEvent event) {
-    	Alert alert = new Alert( AlertType.CONFIRMATION );
-    	alert.setHeaderText(" 자리이동 되었습니다 ");
-    	alert.setTitle("자리이동");
-    	alert.showAndWait();
-    	
-    	btnmove.getScene().getWindow().hide();
-    	loadpage("c_login");
-    }
+    
 
     
 }

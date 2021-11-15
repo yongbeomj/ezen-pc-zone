@@ -48,13 +48,27 @@ public class PcDao {
 		}
 		return 0;
 	}
-	//pc 자리설정
-	public void pcset(int p_no , int m_no ) {
+	//pc 로그인
+	public void pclogin(int p_no , int m_no ) {
 		String sql =  "update pc set m_no=?, p_activation=? where p_no=?";
 		try {
 			preparedStatement= connection.prepareStatement(sql);
 			preparedStatement.setInt(1, m_no);
 			preparedStatement.setInt(2, 2);
+			preparedStatement.setInt(3, p_no);
+			preparedStatement.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("자리설정 db 실패");
+		}
+	}
+	
+	//pc 로그아웃
+	public void pclogout(int p_no , int m_no ) {
+		String sql =  "update pc set m_no=?, p_activation=? where p_no=?";
+		try {
+			preparedStatement= connection.prepareStatement(sql);
+			preparedStatement.setInt(1, 0);
+			preparedStatement.setInt(2, 1);
 			preparedStatement.setInt(3, p_no);
 			preparedStatement.executeUpdate();
 		}catch (Exception e) {
