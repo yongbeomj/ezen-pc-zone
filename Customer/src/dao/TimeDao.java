@@ -111,6 +111,17 @@ public class TimeDao {
 		}
 	}
 	
-	
+	public boolean timeupdate (int m_no ,int add_time ,int time_remaintime) {
+	      String sql ="update time set t_remaintime=? where m_no=?";
+	      try {
+	         preparedStatement=connection.prepareStatement(sql);
+	         preparedStatement.setInt(1, time_remaintime+add_time);
+	         preparedStatement.setInt(2, m_no);
+	         preparedStatement.executeUpdate();
+	         return true ;
+	      }catch (Exception e) {
+	         return false;
+	      }
+	   }
 
 }

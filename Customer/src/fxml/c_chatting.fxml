@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="controller.ChattingController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChattingController">
    <children>
       <Button fx:id="btnsend" layoutX="274.0" layoutY="407.0" mnemonicParsing="false" onAction="#msgsend" prefHeight="29.0" prefWidth="58.0" text="보내기" />
       <Label layoutX="22.0" layoutY="54.0" text="회원 아이디">
@@ -39,5 +39,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="btnconnect" layoutX="266.0" layoutY="15.0" mnemonicParsing="false" onAction="#connect" text="접속" />
    </children>
 </AnchorPane>

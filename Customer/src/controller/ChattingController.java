@@ -20,12 +20,14 @@ import javafx.scene.control.TextField;
 public class ChattingController implements Initializable {
 
 	private String loginid = LoginController.getinstance().getloginid();
-	
+	private int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+	private int p_no = PcDao.getPcDao().pcnocheck(m_no);
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		txtcontents.setDisable(false);
+		btnsend.setDisable(false);
 		lblid.setText(loginid);
-		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
-		int p_no = PcDao.getPcDao().pcnocheck(m_no);
 		lblpcno.setText(p_no + "");
 	}
 	
@@ -100,6 +102,9 @@ public class ChattingController implements Initializable {
 	@FXML
 	private TextField txtcontents;
 
+    @FXML
+    private Button btnconnect;
+    
 	// 엔터 보내기
 	@FXML
 	void entersend(ActionEvent event) {
@@ -111,9 +116,31 @@ public class ChattingController implements Initializable {
 	// 클릭 보내기
 	@FXML
 	void msgsend(ActionEvent event) {
-		send(loginid + " : " + txtcontents.getText() + "\n");
+		send(loginid + " : " + txtclient.getText() + "\n");
 		txtcontents.setText("");
 		txtcontents.requestFocus();
 	}
+
+	@FXML
+    void connect(ActionEvent event) {
+		if( btnconnect.getText().equals("접속")) {
+			// 1. 클라이언트 실행 
+			clientstart();
+			// 2. 접속 메시지 전달 
+			Platform.runLater( ()-> txtclient.appendText(" --- [ 채팅방 접속 ] ---\n")  );
+			// 3. 컨트롤 내용 변경 
+			btnconnect.setText("나가기");
+			
+		}else {
+			// 1. 클라이언트 종료
+			clientstop();
+			// 2. 퇴장 메시지 전달 
+			Platform.runLater( ()-> txtclient.appendText(" --- [ 채팅방 퇴장 ] ---\n")  );
+			// 3. 컨트롤 내용 변경 
+			btnconnect.setText("접속");
+			
+		}
+    }
+    
 
 }
