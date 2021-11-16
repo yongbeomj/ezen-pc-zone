@@ -1,0 +1,46 @@
+ @FXML
+    void start(ActionEvent event) {
+    	thread.start();
+
+    }
+    Thread thread = new Thread( new Runnable() {
+		
+		@Override
+		public void run() {
+			Runnable runnable =new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					int t_remaintime = TimeDao.gettimDao().time_remaintime( 3);
+					TimeDao.gettimDao().timeupdate(3, -1, t_remaintime);
+					
+				}
+			};
+			while(true) {
+				try {
+					Thread.sleep(1000);
+					
+				}catch (Exception e) {
+					// TODO: handle exception
+				}
+				Platform.runLater(runnable);
+			}
+			
+		}
+	});
+    
+    
+
+    @FXML
+    void stop(ActionEvent event) {
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	thread.stop();
+    	//thread.stop();
+    }
