@@ -49,7 +49,7 @@ public class ChattingController implements Initializable {
 			public void run() {
 				try {
 					socket = new Socket("127.0.0.1", 1234);
-					send(loginid + " 님 입장 했습니다 \n");
+					send(loginid + " 님 입장 했습니다. \n");
 					receive();
 				} catch (Exception e) {
 				}
