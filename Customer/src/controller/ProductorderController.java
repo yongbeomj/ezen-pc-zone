@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,97 +44,90 @@ public class ProductorderController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// 로그인 id 조회
 		String loginid = LoginController.getinstance().getloginid();
-		System.out.println("login : "+loginid);
+		System.out.println("login : " + loginid);
 		// m_no 조회
 		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
-		System.out.println("no : "+m_no);
-		String add = "http://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/039/143/medium/IMG_5649%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC.jpg?2019";
-		Image image = new Image(add);
-        ImageView img = new ImageView(image);
-        
-		Button[] buttons = new Button[30]; // 버튼 30개 저장소
-		int z = 0;
-		for (int i = 0; i < 30; i++) {
+		System.out.println("no : " + m_no);
 
-			buttons[i].setGraphic(img);
-			buttons[i].setWrapText(true);
+		Button[] buttons = new Button[25];
+
+		int x = 0;
+		int y = 0;
+		int activation = 2;
+		String imgname = ProductDao.getProductDao().imgname(activation);
+		
+		for (int i = 0; i < buttons.length; i++) {
 			
-			buttons[i] = new Button("좌석" + String.format("%02d", i)); // 메모리 할당
-			buttons[i].setLayoutX(40 + (z * 150));
-			buttons[i].setLayoutY(50);
+			File file = new File("src/image/" + imgname);
+			Image image = new Image( file.toURI().toString() );
+			
+			buttons[i] = new Button(); // 메모리 할당
+			buttons[i].setGraphic(new ImageView(image));
+			buttons[i].setWrapText(true);
 
-			if (i % 5 == 0) {
-				z = 0;
+			if (i == 0) {
+				buttons[i].setLayoutX(40);
+				buttons[i].setLayoutY(50);
 			}
-			if (i / 5 == 1) {
-				buttons[i].setLayoutX(40 + (z * 150));
-				buttons[i].setLayoutY(150);
+			if (i > 0 && i % 5 == 0) {
+				x = 0;
+				y++;
 			}
-			if (i / 10 == 1) {
-				buttons[i].setLayoutX(40 + (z * 150));
-				buttons[i].setLayoutY(250);
-			}
-			if (i / 15 == 1) {
-				buttons[i].setLayoutX(40 + (z * 150));
-				buttons[i].setLayoutY(350);
-			}
-			if (i / 20 == 1) {
-				buttons[i].setLayoutX(40 + (z * 150));
-				buttons[i].setLayoutY(450);
-			}
-			if (i / 25 == 1) {
-				buttons[i].setLayoutX(40 + (z * 150));
-				buttons[i].setLayoutY(550);
-			}
+			
+			buttons[i].setLayoutX(40 + (x * 135));
+			buttons[i].setLayoutY(50 + (y * 100));
 			
 			buttons[i].setOnAction(e -> {
-				System.out.println(e.toString() + "좌석이 선택 되었습니다 ");
+				System.out.println(e.toString() + "제품이 선택 되었습니다 ");
 			});
-
+				
 			cp.getChildren().add(buttons[i]); // 배치
-			z++;
+			x++;
 		}
+		
+		
+	}
+	
+	
+
+	@FXML
+	private Button btncountchange;
+
+	@FXML
+	private Button btndelete;
+
+	@FXML
+	private Button btnorder;
+
+	@FXML
+	private ComboBox<?> cbproductcount;
+
+	@FXML
+	private AnchorPane cp;
+
+	@FXML
+	private AnchorPane lp;
+
+	@FXML
+	private TableView<?> productlist;
+
+	@FXML
+	private BorderPane productorderpane;
+
+	@FXML
+	private AnchorPane tp;
+
+	@FXML
+	private TextField txtprice;
+
+	@FXML
+	void countchange(ActionEvent event) {
 
 	}
 
-    @FXML
-    private Button btncountchange;
-
-    @FXML
-    private Button btndelete;
-
-    @FXML
-    private Button btnorder;
-
-    @FXML
-    private ComboBox<?> cbproductcount;
-
-    @FXML
-    private AnchorPane cp;
-
-    @FXML
-    private AnchorPane lp;
-
-    @FXML
-    private TableView<?> productlist;
-
-    @FXML
-    private BorderPane productorderpane;
-
-    @FXML
-    private AnchorPane tp;
-
-    @FXML
-    private TextField txtprice;
-
-    @FXML
-    void countchange(ActionEvent event) {
-
-    }
-
-    @FXML
-    void delete(ActionEvent event) {
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
+	@FXML
+	void delete(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setContentText(" 메뉴삭제 ");
 		alert.setHeaderText(" 메뉴를 삭제하시겠습니까? ");
 		alert.setTitle("메뉴삭제");
@@ -142,11 +136,11 @@ public class ProductorderController implements Initializable {
 		if (optional.get() == ButtonType.OK) { // 확인을 누르면
 
 		}
-    }
+	}
 
-    @FXML
-    void order(ActionEvent event) {
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
+	@FXML
+	void order(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setContentText(" 주문하기 ");
 		alert.setHeaderText(" 주문하시겠니까? ");
 		alert.setTitle(" 주문하기 ");
@@ -156,10 +150,10 @@ public class ProductorderController implements Initializable {
 			btndelete.getScene().getWindow().hide(); // 메인창을 끄고
 			LoginController.getinstance().loadpage("c_mainpage"); // 로그인 창 활성화
 		}
-    }
+	}
 
-    @FXML
-    void productcount(ActionEvent event) {
+	@FXML
+	void productcount(ActionEvent event) {
 
-    }
+	}
 }

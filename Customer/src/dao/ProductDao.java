@@ -60,5 +60,22 @@ public class ProductDao {
 		}
 		return products;
 	}
-
+	
+	// 제품 이미지명 조회
+	public String imgname(int activation) {
+		String sql = "select p_img from product where p_activation = ? order by p_no asc";
+		
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, activation);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getString(1);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+		}
+		return null;
+	}
 }
