@@ -38,6 +38,12 @@ public class Product {
 			activation = "구매가능";
 		}
 	}
+	
+	public Product(int p_no, String p_img, String activation) {
+		this.p_no = p_no;
+		this.p_img = p_img;
+		this.activation = activation;
+	}
 
 	// 메소드
 	public int getP_no() {

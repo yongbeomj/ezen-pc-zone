@@ -49,7 +49,7 @@ public class ChattingController implements Initializable {
 			public void run() {
 				try {
 					socket = new Socket("127.0.0.1", 1234);
-					send(loginid + " 님 입장 했습니다. \n");
+					send("PC 번호 : " + p_no + " 번 / " + loginid + " 님 입장 했습니다. \n");
 					receive();
 				} catch (Exception e) {
 				}
@@ -117,7 +117,7 @@ public class ChattingController implements Initializable {
 	// 엔터 보내기
 	@FXML
 	void entersend(ActionEvent event) {
-		send(loginid + " : " + txtcontents.getText() + "\n");
+		send(p_no + " 번 고객 : " + txtcontents.getText() + "\n");
 		txtcontents.setText("");
 		txtcontents.requestFocus();
 	}
@@ -125,7 +125,7 @@ public class ChattingController implements Initializable {
 	// 클릭 보내기
 	@FXML
 	void msgsend(ActionEvent event) {
-		send(loginid + " : " + txtcontents.getText() + "\n");
+		send(p_no + " 번 고객 : " + txtcontents.getText() + "\n");
 		txtcontents.setText("");
 		txtcontents.requestFocus();
 	}

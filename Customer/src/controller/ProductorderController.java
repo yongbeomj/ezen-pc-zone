@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import dao.MemberDao;
 import dao.ProductDao;
 import domain.Product;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,8 @@ import javafx.scene.paint.Color;
 
 public class ProductorderController implements Initializable {
 
+
+	
 	// 로그인 id 조회
 	String loginid = LoginController.getinstance().getloginid();
 	// m_no 조회
@@ -53,12 +56,10 @@ public class ProductorderController implements Initializable {
 
 		int x = 0;
 		int y = 0;
-		int activation = 2;
-		String imgname = ProductDao.getProductDao().imgname(activation);
-		
+
 		for (int i = 0; i < buttons.length; i++) {
 			
-			File file = new File("src/image/" + imgname);
+			File file = new File("src/image/1.png");
 			Image image = new Image( file.toURI().toString() );
 			
 			buttons[i] = new Button(); // 메모리 할당
@@ -84,7 +85,7 @@ public class ProductorderController implements Initializable {
 			cp.getChildren().add(buttons[i]); // 배치
 			x++;
 		}
-		
+				
 		
 	}
 	
@@ -109,7 +110,7 @@ public class ProductorderController implements Initializable {
 	private AnchorPane lp;
 
 	@FXML
-	private TableView<?> productlist;
+	private TableView<Product> productlist;
 
 	@FXML
 	private BorderPane productorderpane;

@@ -62,20 +62,24 @@ public class ProductDao {
 	}
 	
 	// 제품 이미지명 조회
-	public String imgname(int activation) {
-		String sql = "select p_img from product where p_activation = ? order by p_no asc";
+	public ObservableList<Product> imgname() {
+		ObservableList<Product> products = FXCollections.observableArrayList();
+		String sql = "select p_img from product order by p_no asc";
 		
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, activation);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				return resultSet.getString(1);
-			} else {
-				return null;
+				Product product = new Product(
+						resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getString(3));
+				products.add(product);
 			}
+			return products;
+			
 		} catch (Exception e) {
 		}
-		return null;
+		return products;
 	}
 }
