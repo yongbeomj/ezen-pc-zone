@@ -57,6 +57,7 @@ public class ProductorderController implements Initializable {
 		int x = 0;
 		int y = 0;
 
+		
 		for (int i = 0; i < buttons.length; i++) {
 			
 			File file = new File("src/image/1.png");

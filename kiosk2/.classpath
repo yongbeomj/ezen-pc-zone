@@ -11,11 +11,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/505/git/ezen-pc-zone/Customer/src/java_library/2. MySQL/mysql-connector-java-8.0.27.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/505/git/ezen-pc-zone/Customer/src/java_library/3. javafx-sdk-17.0.1/lib/javafx.base.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -52,6 +47,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/505/git/ezen-pc-zone/Customer/src/java_library/3. javafx-sdk-17.0.1/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/505/git/ezen-pc-zone/Customer/src/java_library/2. MySQL/mysql-connector-java-8.0.27.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

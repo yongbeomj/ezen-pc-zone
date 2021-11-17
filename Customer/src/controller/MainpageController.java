@@ -159,6 +159,9 @@ public class MainpageController implements Initializable {
 		Optional<ButtonType> optional = alert.showAndWait();
 		if (optional.get() == ButtonType.OK) {
 			thread.stop();
+			btnpause.setText("Ω√¿€");
+			
+			
 			btnlogout.getScene().getWindow().hide();
 			LoginController.getinstance().loadpage("c_login");
 		}
