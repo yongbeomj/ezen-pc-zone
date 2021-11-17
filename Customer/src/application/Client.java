@@ -4,8 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import controller.ServerController;
-import javafx.application.Platform;
+import controller.ChattingController;
 
 public class Client {
 	
@@ -34,7 +33,7 @@ public class Client {
 						String msg = new String( bytes ); // 바이트배열 ->> 문자열 변환
 						
 						// 받은 메시지를 서버내 접속된 모든 접속자에게 메시지 전달 
-						for( Client client : ServerController.clients ) {
+						for( Client client : ChattingController.clients ) {
 							client.send( msg ); // 받은 문자를 보내기 
 						}
 					}
@@ -43,7 +42,7 @@ public class Client {
 			}
 		};
 		// 스레드풀에 스레드 추가 
-		ServerController.threadpool.submit(runnable);
+		ChattingController.threadpool.submit(runnable);
 	}
 	// 4. 서버가 메시지를 보내는 메소드 
 	public void send( String msg) {
@@ -61,7 +60,7 @@ public class Client {
 			}
 		};
 		// 스레드풀에 스레드 추가 
-		ServerController.threadpool.submit(runnable);
+		ChattingController.threadpool.submit(runnable);
 	}
 	
 

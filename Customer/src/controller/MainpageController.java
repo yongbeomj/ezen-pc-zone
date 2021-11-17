@@ -21,7 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-
 public class MainpageController implements Initializable {
 
 	// 로그인 id 조회
@@ -36,23 +35,25 @@ public class MainpageController implements Initializable {
 	int t_remaintime = TimeDao.getTimeDao().remaintimecheck(m_no);
 
 	Runnable runnable = new Runnable() {
-	      
-	      @Override
-	      public void run() {
-	         while(true) {
-	            int t_remaintime = TimeDao.getTimeDao().remaintimecheck(m_no);
-	            TimeDao.getTimeDao().timeupdate(m_no, -1, t_remaintime);
-	            try {
-	               Thread.sleep(1000);
-	            } catch (InterruptedException e) {
-	               // TODO Auto-generated catch block
-	               e.printStackTrace();
-	            }
-	         }
-	      }
-	   };
-	   Thread thread = new Thread(runnable);
+
+		@Override
+		public void run() {
+			while (true) {
+				int t_remaintime = TimeDao.getTimeDao().remaintimecheck(m_no);
+				TimeDao.getTimeDao().timeupdate(m_no, -1, t_remaintime);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	};
 	
+	Thread thread1 = new Thread(runnable);
+	Thread thread2 = new Thread(runnable);
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lblloginid.setText(loginid);
@@ -61,9 +62,9 @@ public class MainpageController implements Initializable {
 		lblremaintime.setText(t_remaintime + "");
 		// m_no의 남은 요금 조회
 		lblprice.setText(""); // 임시
-		 
-		thread.start();
-		
+
+		thread1.start();
+
 	}
 
 	// 인스턴스화
@@ -144,26 +145,33 @@ public class MainpageController implements Initializable {
 		if (optional.get() == ButtonType.OK) {
 			btnmove.getScene().getWindow().hide();
 			loadpage("c_move");
-			// 시간 멈춤
 		}
 	}
-	
+
 	@FXML
 	void pause(ActionEvent event) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText(" 일시정지 ");
-		alert.setHeaderText(" 일시정지 하시겠습니까? ");
-		alert.setTitle("일시정지");
-		// 일시정지를 누르면 시간만 멈추고 로그인 창 활성화
-		
-		Optional<ButtonType> optional = alert.showAndWait();
-		if (optional.get() == ButtonType.OK) {
-			thread.stop();
-			btnpause.setText("시작");
-			
-			
-			btnlogout.getScene().getWindow().hide();
-			LoginController.getinstance().loadpage("c_login");
+		if (btnpause.getText().equals("일시정지")) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setContentText(" 일시정지 ");
+			alert.setHeaderText(" 일시정지 하시겠습니까? ");
+			alert.setTitle("일시정지");
+
+			Optional<ButtonType> optional = alert.showAndWait();
+			if (optional.get() == ButtonType.OK) {
+				thread1.stop();
+				btnpause.setText("시작");
+			}
+		} else {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setContentText(" 시작 ");
+			alert.setHeaderText(" 시작 하시겠습니까? ");
+			alert.setTitle("시작");
+
+			Optional<ButtonType> optional = alert.showAndWait();
+			if (optional.get() == ButtonType.OK) {
+				thread2.start(); // ???
+				btnpause.setText("일시정지");
+			}
 		}
 	}
 

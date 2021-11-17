@@ -62,6 +62,23 @@ public class TimeDao {
 		return 0;
 	}
 	
+//	// 최근 충전 요금 조회
+//	public int chargepricecheck(int ) {
+//		String sql = "select t_remaintime from time where m_no = ?";
+//		try {
+//			preparedStatement = connection.prepareStatement(sql);
+//			preparedStatement.setInt(1, mno);
+//			resultSet = preparedStatement.executeQuery();
+//			if (resultSet.next()) {
+//				return resultSet.getInt(1);
+//			} else {
+//				return 0;
+//			}
+//		} catch (Exception e) {}
+//		return 0;
+//	}
+	
+	
 	// 등록 날짜(충전 날짜) 조회
 	public String chargedatecheck(int mno) {
 		String sql = "select to_date from timeorder where m_no = ?";

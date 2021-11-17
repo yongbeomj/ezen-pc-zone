@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -32,11 +33,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class ProductorderController implements Initializable {
 
-
+	private static double BUTTONS_PER_LINE = 80;
+    private static double NUM_BUTTON_LINES = 80;
+    private static double BUTTON_PADDING   = 5;
 	
 	// 로그인 id 조회
 	String loginid = LoginController.getinstance().getloginid();
@@ -52,40 +56,54 @@ public class ProductorderController implements Initializable {
 		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
 		System.out.println("no : " + m_no);
 
-		Button[] buttons = new Button[25];
+		GridPane grid = new GridPane();
+        grid.setPadding(new Insets(BUTTON_PADDING));
+        grid.setHgap(BUTTON_PADDING);
+        grid.setVgap(BUTTON_PADDING);
 
-		int x = 0;
-		int y = 0;
+        for (int r = 0; r < NUM_BUTTON_LINES; r++) {
+            for (int c = 0; c < BUTTONS_PER_LINE; c++) {
+                Button button = new Button(r + ":" + c);
+                grid.add(button, c, r);
+            }
+        }
 
+		scrollcp.setContent(grid);
 		
-		for (int i = 0; i < buttons.length; i++) {
-			
-			File file = new File("src/image/1.png");
-			Image image = new Image( file.toURI().toString() );
-			
-			buttons[i] = new Button(); // 메모리 할당
-			buttons[i].setGraphic(new ImageView(image));
-			buttons[i].setWrapText(true);
-
-			if (i == 0) {
-				buttons[i].setLayoutX(40);
-				buttons[i].setLayoutY(50);
-			}
-			if (i > 0 && i % 5 == 0) {
-				x = 0;
-				y++;
-			}
-			
-			buttons[i].setLayoutX(40 + (x * 135));
-			buttons[i].setLayoutY(50 + (y * 100));
-			
-			buttons[i].setOnAction(e -> {
-				System.out.println(e.toString() + "제품이 선택 되었습니다 ");
-			});
-				
-			cp.getChildren().add(buttons[i]); // 배치
-			x++;
-		}
+		
+//		Button[] buttons = new Button[25];
+//
+//		int x = 0;
+//		int y = 0;		
+		
+//		for (int i = 0; i < buttons.length; i++) {
+//			
+//			File file = new File("src/image/1.png");
+//			Image image = new Image( file.toURI().toString() );
+//			
+//			buttons[i] = new Button(); // 메모리 할당
+//			buttons[i].setGraphic(new ImageView(image));
+//			buttons[i].setWrapText(true);
+//
+//			if (i == 0) {
+//				buttons[i].setLayoutX(40);
+//				buttons[i].setLayoutY(50);
+//			}
+//			if (i > 0 && i % 5 == 0) {
+//				x = 0;
+//				y++;
+//			}
+//			
+//			buttons[i].setLayoutX(40 + (x * 135));
+//			buttons[i].setLayoutY(50 + (y * 100));
+//			
+//			buttons[i].setOnAction(e -> {
+//				System.out.println(e.toString() + "제품이 선택 되었습니다 ");
+//			});
+//				
+//			cp.getChildren().add(buttons[i]); // 배치
+//			x++;
+//		}
 				
 		
 	}
@@ -104,8 +122,8 @@ public class ProductorderController implements Initializable {
 	@FXML
 	private ComboBox<?> cbproductcount;
 
-	@FXML
-	private AnchorPane cp;
+    @FXML
+    private ScrollPane scrollcp;
 
 	@FXML
 	private AnchorPane lp;

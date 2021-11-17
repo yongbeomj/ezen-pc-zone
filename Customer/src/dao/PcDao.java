@@ -34,7 +34,7 @@ public class PcDao {
 	
 	// 메소드
 	public int pcnocheck(int m_no) {
-		String sql = "select p_no from pc where m_no = ?";
+		String sql = "select pc_no from pc where m_no = ?";
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, m_no);
@@ -48,14 +48,34 @@ public class PcDao {
 		}
 		return 0;
 	}
+	//피시 포트번호 찾기
+    public int pc_portfind(int p_no ) {
+       String sql = "select pc_port from pc where pc_no=?";
+       try {
+          preparedStatement= connection.prepareStatement(sql);
+          preparedStatement.setInt(1, p_no);
+          //preparedStatement.setInt(2, p_no);
+          resultSet= preparedStatement.executeQuery();
+          if(resultSet.next()) {
+             return resultSet.getInt(1);
+          }else {
+             return 0;
+          }
+       }catch (Exception e) {
+          System.out.println("pccheck 실패");
+          return 0;
+       }
+       
+    }
+	
 	//pc 로그인
-	public void pclogin(int p_no , int m_no ) {
-		String sql =  "update pc set m_no=?, p_activation=? where p_no=?";
+	public void pclogin(int pc_no , int m_no ) {
+		String sql =  "update pc set m_no=?, pc_activation=? where pc_no=?";
 		try {
 			preparedStatement= connection.prepareStatement(sql);
 			preparedStatement.setInt(1, m_no);
 			preparedStatement.setInt(2, 2);
-			preparedStatement.setInt(3, p_no);
+			preparedStatement.setInt(3, pc_no);
 			preparedStatement.executeUpdate();
 		}catch (Exception e) {
 			System.out.println("자리설정 db 실패");
@@ -64,7 +84,7 @@ public class PcDao {
 	
 	//pc 로그아웃
 	public void pclogout(int p_no , int m_no ) {
-		String sql =  "update pc set m_no=?, p_activation=? where p_no=?";
+		String sql =  "update pc set m_no=?, pc_activation=? where pc_no=?";
 		try {
 			preparedStatement= connection.prepareStatement(sql);
 			preparedStatement.setInt(1, 0);
@@ -98,7 +118,7 @@ public class PcDao {
 	//사용중인 pc 확인
 	public ArrayList<Pc> pcactivation_List(){
 		ArrayList<Pc> pcactivList = new ArrayList<>();
-		String sql = "SELECT p_no , m_no FROM ezenpczone.pc where p_activation=2";
+		String sql = "SELECT pc_no , m_no FROM ezenpczone.pc where pc_activation=2";
 		try {
 			preparedStatement=connection.prepareStatement(sql);		
 			resultSet = preparedStatement.executeQuery();
