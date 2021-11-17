@@ -45,13 +45,11 @@ public class ProductDao {
 						resultSet.getInt(1),
 						resultSet.getString(2),
 						resultSet.getString(3),
-						resultSet.getString(4),
+						resultSet.getInt(4),
 						resultSet.getString(5),
 						resultSet.getInt(6),
 						resultSet.getInt(7),
-						resultSet.getInt(8),
-						resultSet.getString(9),
-						resultSet.getInt(10));
+						resultSet.getString(8));
 				// 객체 리스트 저장
 				products.add(product);
 			}

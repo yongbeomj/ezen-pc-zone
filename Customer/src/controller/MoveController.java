@@ -33,7 +33,7 @@ public class MoveController implements Initializable {
 		// m_no 조회
 		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
 		// m_no의 pc_no 조회
-		int p_no = PcDao.getPcDao().pcnocheck(m_no);
+		int pc_no = PcDao.getPcDao().pcnocheck(m_no);
 		lblprepc.setText("No." + p_no);
 		lblafterpc.setText("");
 		
@@ -79,12 +79,8 @@ public class MoveController implements Initializable {
  		
     @FXML
     void move(ActionEvent event) {
-    	// 자리이동을 누르면
     	PcDao.getPcDao().pclogout(p_no, m_no);
     	PcDao.getPcDao().pclogin(pc, m_no);
-    	// 지금 pc 로그아웃
-    	
-    	// 이동 pc 사용 중으로 색 바뀜
     	
     	Alert alert = new Alert( AlertType.CONFIRMATION );
     	alert.setHeaderText(" 자리이동 되었습니다 ");

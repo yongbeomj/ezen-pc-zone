@@ -2,10 +2,16 @@ package controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import application.Client;
 import dao.MemberDao;
 import dao.PcDao;
 import javafx.application.Platform;
@@ -24,32 +30,81 @@ public class ChattingController implements Initializable {
 	private int p_no = PcDao.getPcDao().pcnocheck(m_no);
 
 	
+	//+++++++++++++++++++++++++++++++++++++++ 서버 열기+++++++++++++++++++++++++++++++++++++
+		// 0.접속한 클라이언트를 저장하기 위한 리스트 
+				public static Vector<Client> clients = new Vector<>();
+						// Arraylist : 동기화x[단일스레드]		// Vector : 동기화o[멀티스레드]
+						// 동기화 : 동일한 메소드에 여러개 스레드가 호출 할때 호출순서 매기기 
+				
+				// 0. 스레드를 관리해주는 스레드풀 [ ExecutorService : 스레드풀 구현 인터페이스 ] 
+				public static ExecutorService threadpool;
+				
+				// 1. 서버소켓 선언 
+				ServerSocket serverSocket;
+				
+				// 2. 서버실행 메소드 
+				public void serverstart(int port) {
+					
+					try {
+						// 1. 서버소켓에 메모리 할당 
+						serverSocket = new ServerSocket();
+						// 2. 서버소켓에 바인딩 [ ip , port 설정 ] 
+						serverSocket.bind( new InetSocketAddress( "127.0.0.1" , port ) );
+					}
+					catch (Exception e) {}
+				
+					Runnable runnable = new Runnable() { // 실시간으로 클라이언트 접속 요청 대기 
+						
+						@Override
+						public void run() {
+							try {
+								while(true) {
+									Socket socket = serverSocket.accept();	// 1. 요청 수락 --> 수락된 소켓 객체화
+									clients.add( new Client(socket) );		// 2. 수락된 소켓으로 클라이언트 객체 생성 해서 리스트에 저장 
+								}
+							}
+							catch (Exception e) {}
+						}
+					};
+					threadpool = Executors.newCachedThreadPool(); // 서버가 실행되면 스레드풀 메모리 초기화 
+					threadpool.submit( runnable );				// 클라이언트 요청 스레드를 스레드풀에 추가 
+				}
+				// 3. 서버중지 메소드 
+				public void serverstop() {
+					try {
+						// 0. 서버에 접속된 회원들의 소켓 모두 닫기 
+						for( Client client : clients ) {
+							client.socket.close(); // 소켓 닫기 
+						}
+						serverSocket.close(); // 1. 서버소켓 닫기 
+						threadpool.shutdown(); // 2. 스레드풀 닫기 
+					}
+					catch (Exception e) {}
+				}
+			//+++++++++++++++++++++++++++++++++++++++ 서버 열기 +++++++++++++++++++++++++++++++++++++
+				int port= PcDao.getPcDao().pc_portfind(p_no);
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// 서버 실행
-		ServerController serverController = new ServerController();
-		serverController.serverstart();
-		// 자동 접속
-		connect(null);
-		btnconnect.setVisible(false);
-		
-		txtcontents.setDisable(false);
-		btnsend.setDisable(false);
 		lblid.setText(loginid);
-		lblpcno.setText(p_no + "");
+		lblpcno.setText(p_no+"");
+		
+		serverstart(port);
+    	Platform.runLater( () -> {
+    		txtclient.appendText(" --- [ 서버 접속 성공 ] ---\n");
+		});
 	}
 	
 	Socket socket;
 
 	// 클라이언트 시작
-	public void clientstart() {
+	public void clientstart(int port) {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
 				try {
-					socket = new Socket("127.0.0.1", 1234);
-					send("PC 번호 : " + p_no + " 번 / " + loginid + " 님 입장 했습니다. \n");
+					socket = new Socket("127.0.0.1", port);
+					send(loginid + " 님 입장 했습니다. \n");
 					receive();
 				} catch (Exception e) {
 				}
@@ -117,7 +172,7 @@ public class ChattingController implements Initializable {
 	// 엔터 보내기
 	@FXML
 	void entersend(ActionEvent event) {
-		send(p_no + " 번 고객 : " + txtcontents.getText() + "\n");
+		send(loginid + " : " + txtcontents.getText() + "\n");
 		txtcontents.setText("");
 		txtcontents.requestFocus();
 	}
@@ -125,7 +180,7 @@ public class ChattingController implements Initializable {
 	// 클릭 보내기
 	@FXML
 	void msgsend(ActionEvent event) {
-		send(p_no + " 번 고객 : " + txtcontents.getText() + "\n");
+		send(loginid + " : " + txtcontents.getText() + "\n");
 		txtcontents.setText("");
 		txtcontents.requestFocus();
 	}
@@ -134,7 +189,7 @@ public class ChattingController implements Initializable {
     void connect(ActionEvent event) {
 		if( btnconnect.getText().equals("접속")) {
 			// 1. 클라이언트 실행 
-			clientstart();
+			clientstart(port);
 			// 2. 접속 메시지 전달 
 			Platform.runLater( ()-> txtclient.appendText(" --- [ 접속 성공 ] ---\n")  );
 			// 3. 컨트롤 내용 변경 
