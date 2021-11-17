@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -22,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
@@ -35,80 +37,83 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class ProductorderController implements Initializable {
 
-	private static double BUTTONS_PER_LINE = 80;
-    private static double NUM_BUTTON_LINES = 80;
-    private static double BUTTON_PADDING   = 5;
-	
-	// 로그인 id 조회
-	String loginid = LoginController.getinstance().getloginid();
-	// m_no 조회
-	int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+	private static double columns = 3;
+	private static double rows = 10;
+
+//	// 로그인 id 조회
+//	String loginid = LoginController.getinstance().getloginid();
+//	// m_no 조회
+//	int m_no = MemberDao.getMemberDao().mnocheck(loginid);
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// 로그인 id 조회
-		String loginid = LoginController.getinstance().getloginid();
-		System.out.println("login : " + loginid);
-		// m_no 조회
-		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
-		System.out.println("no : " + m_no);
+//		// 로그인 id 조회
+//		String loginid = LoginController.getinstance().getloginid();
+//		System.out.println("login : " + loginid);
+//		// m_no 조회
+//		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+//		System.out.println("no : " + m_no);
 
+		// 베스트 메뉴 버튼
+
+		try {
+			FileInputStream input1 = new FileInputStream("src/image/1.png");
+			Image image1 = new Image(input1);
+			imgbm1.setImage(image1);
+
+			FileInputStream input2 = new FileInputStream("src/image/2.jpg");
+			Image image2 = new Image(input2);
+			imgbm2.setImage(image2);
+
+			FileInputStream input3 = new FileInputStream("src/image/3.jpg");
+			Image image3 = new Image(input3);
+			imgbm3.setImage(image3);
+
+			FileInputStream input4 = new FileInputStream("src/image/4.jpg");
+			Image image4 = new Image(input4);
+			imgbm4.setImage(image4);
+
+			FileInputStream input5 = new FileInputStream("src/image/5.jpg");
+			Image image5 = new Image(input5);
+			imgbm5.setImage(image5);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// 메뉴 버튼
 		GridPane grid = new GridPane();
-        grid.setPadding(new Insets(BUTTON_PADDING));
-        grid.setHgap(BUTTON_PADDING);
-        grid.setVgap(BUTTON_PADDING);
+		grid.setPadding(new Insets(20));
+		grid.setHgap(20);
+		grid.setVgap(20);
 
-        for (int r = 0; r < NUM_BUTTON_LINES; r++) {
-            for (int c = 0; c < BUTTONS_PER_LINE; c++) {
-                Button button = new Button(r + ":" + c);
-                grid.add(button, c, r);
-            }
-        }
+		// 버튼 생성
+		int num = (int) (columns * rows);
+		Button[] buttons = new Button[num];
 
+		Label label = new Label("Menu");
+		label.setFont(Font.font(18));
+		grid.add(label, 0, 0);
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				File file = new File("src/image/1.png");
+				Image image = new Image(file.toURI().toString());
+
+				buttons[i] = new Button(); // 메모리 할당
+				buttons[i].setGraphic(new ImageView(image));
+				buttons[i].setWrapText(true);
+
+				grid.add(buttons[i], j, i + 1);
+			}
+		}
 		scrollcp.setContent(grid);
-		
-		
-//		Button[] buttons = new Button[25];
-//
-//		int x = 0;
-//		int y = 0;		
-		
-//		for (int i = 0; i < buttons.length; i++) {
-//			
-//			File file = new File("src/image/1.png");
-//			Image image = new Image( file.toURI().toString() );
-//			
-//			buttons[i] = new Button(); // 메모리 할당
-//			buttons[i].setGraphic(new ImageView(image));
-//			buttons[i].setWrapText(true);
-//
-//			if (i == 0) {
-//				buttons[i].setLayoutX(40);
-//				buttons[i].setLayoutY(50);
-//			}
-//			if (i > 0 && i % 5 == 0) {
-//				x = 0;
-//				y++;
-//			}
-//			
-//			buttons[i].setLayoutX(40 + (x * 135));
-//			buttons[i].setLayoutY(50 + (y * 100));
-//			
-//			buttons[i].setOnAction(e -> {
-//				System.out.println(e.toString() + "제품이 선택 되었습니다 ");
-//			});
-//				
-//			cp.getChildren().add(buttons[i]); // 배치
-//			x++;
-//		}
-				
-		
+
 	}
-	
-	
 
 	@FXML
 	private Button btncountchange;
@@ -122,8 +127,20 @@ public class ProductorderController implements Initializable {
 	@FXML
 	private ComboBox<?> cbproductcount;
 
-    @FXML
-    private ScrollPane scrollcp;
+	@FXML
+	private ImageView imgbm1;
+
+	@FXML
+	private ImageView imgbm2;
+
+	@FXML
+	private ImageView imgbm3;
+
+	@FXML
+	private ImageView imgbm4;
+
+	@FXML
+	private ImageView imgbm5;
 
 	@FXML
 	private AnchorPane lp;
@@ -133,6 +150,9 @@ public class ProductorderController implements Initializable {
 
 	@FXML
 	private BorderPane productorderpane;
+
+	@FXML
+	private ScrollPane scrollcp;
 
 	@FXML
 	private AnchorPane tp;
@@ -147,33 +167,17 @@ public class ProductorderController implements Initializable {
 
 	@FXML
 	void delete(ActionEvent event) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText(" 메뉴삭제 ");
-		alert.setHeaderText(" 메뉴를 삭제하시겠습니까? ");
-		alert.setTitle("메뉴삭제");
-		// 알림창이 떴을 때 옵션(확인, 취소)에 따라 기능 다름
-		Optional<ButtonType> optional = alert.showAndWait();
-		if (optional.get() == ButtonType.OK) { // 확인을 누르면
 
-		}
 	}
 
 	@FXML
 	void order(ActionEvent event) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setContentText(" 주문하기 ");
-		alert.setHeaderText(" 주문하시겠니까? ");
-		alert.setTitle(" 주문하기 ");
-		// 알림창이 떴을 때 옵션(확인, 취소)에 따라 기능 다름
-		Optional<ButtonType> optional = alert.showAndWait();
-		if (optional.get() == ButtonType.OK) { // 확인을 누르면
-			btndelete.getScene().getWindow().hide(); // 메인창을 끄고
-			LoginController.getinstance().loadpage("c_mainpage"); // 로그인 창 활성화
-		}
+
 	}
 
 	@FXML
 	void productcount(ActionEvent event) {
 
 	}
+
 }

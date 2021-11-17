@@ -128,6 +128,8 @@ public class TimeDao {
 		}
 	}
 	
+	// 실시간 차감
+	
 	public boolean timeupdate (int m_no ,int add_time ,int time_remaintime) {
 	      String sql ="update time set t_remaintime=? where m_no=?";
 	      try {
