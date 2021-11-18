@@ -61,7 +61,7 @@ public class ProductorderController implements Initializable {
 		
 		// 베스트 메뉴 버튼
 		try {
-			FileInputStream input1 = new FileInputStream("src/image/1.png");
+			FileInputStream input1 = new FileInputStream("src/image/1.jpg");
 			Image image1 = new Image(input1);
 			imgbm1.setImage(image1);
 
@@ -93,25 +93,25 @@ public class ProductorderController implements Initializable {
 		// 메뉴 버튼
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(20));
-		grid.setHgap(20);
-		grid.setVgap(20);
-//		grid.setAlignment(Pos.CENTER);
+		grid.setHgap(15);
+		grid.setVgap(15);
 
 		// 제품 내역 가져오기
 		ArrayList<Product> menulist = ProductDao.getProductDao().buttonlist();
 
 		// 버튼 생성
 		int num = (int) (columns * rows);
-//		Button[] buttons = new Button[num];
 		Menubutton[] menubuttons = new Menubutton[num];
-
+		
+		// 제목 라벨
 		Label label = new Label("Menu");
 		label.setFont(Font.font(18));
 		grid.add(label, 0, 0);
-
-		for (int i = 0; i < rows; i++) {
+		
+		int z = 0;
+		for (int i = 0; i < num; i++) {
 			int t = i; // i 값 받아오기
-			for (int j = 0; j < columns; j++) {
+//			for (int j = 0; j < columns; j++) {
 
 				menubuttons[i] = new Menubutton();
 				// 버튼에 제품값 설정
@@ -131,16 +131,13 @@ public class ProductorderController implements Initializable {
 				// 라벨
 				Label menuname = new Label(menubuttons[i].p_name);
 				Label menuprice = new Label(menubuttons[i].p_price+"");
-				menuname.setFont(Font.font(16));
-				menuprice.setFont(Font.font(16));
 
 				// 라벨 2개 합치기
 				String temp = menuname.getText() + "      /      " + menuprice.getText();
 				Label label2 = new Label(temp);
-
+				label2.setFont(Font.font(16));
+				
 				grid.setHalignment(label2, HPos.CENTER);
-				
-				
 				
 				menubuttons[i].button.setGraphic(new ImageView(image));
 				menubuttons[i].button.setWrapText(true);
@@ -169,10 +166,10 @@ public class ProductorderController implements Initializable {
 					txtprice.setText(total_payment() + "");
 				});
 
-				grid.add(menubuttons[i].button, j, ((i + 1) * 2 - 1));
-				grid.add(label2, j, ((i + 2) * 2 - 2));
-
-			}
+				grid.add(menubuttons[i].button, z, ((i + 1) * 2 - 1));
+				grid.add(label2, z, ((i + 2) * 2 - 2));
+				
+//			}
 		}
 		scrollcp.setContent(grid);
 

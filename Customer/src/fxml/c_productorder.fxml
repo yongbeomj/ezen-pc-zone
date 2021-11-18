@@ -14,7 +14,7 @@
 
 <BorderPane fx:id="productorderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductorderController">
    <right>
-      <AnchorPane fx:id="lp" prefHeight="596.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="lp" prefHeight="600.0" prefWidth="467.0" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="productlist" layoutX="21.0" layoutY="56.0" prefHeight="305.0" prefWidth="412.0">
                <columns>
@@ -65,7 +65,7 @@
       </AnchorPane>
    </right>
    <center>
-      <ScrollPane fx:id="scrollcp" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="scrollcp" prefHeight="600.0" prefWidth="727.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <AnchorPane fx:id="tp" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
