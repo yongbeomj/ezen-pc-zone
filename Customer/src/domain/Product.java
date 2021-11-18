@@ -12,6 +12,8 @@ public class Product {
 	private int p_activation;
 	private String p_date;
 
+	private int sale_count;
+	
 	private String activation;
 
 	// 생성자
@@ -34,11 +36,40 @@ public class Product {
 			activation = "구매가능";
 		}
 	}
+	
 
+	public Product(int p_no, String p_name, String p_img, int p_count,String p_category,  int p_price,
+			int p_activation) {
+		
+		this.p_no = p_no;
+		this.p_name = p_name;
+		this.p_img = p_img;
+		this.p_category = p_category;
+		this.p_count = p_count;
+		this.p_price = p_price;
+		this.p_activation = p_activation;
+	}
+	//장바구니
+	
+	
+	
 	public Product(int p_no, String p_img, String activation) {
 		this.p_no = p_no;
 		this.p_img = p_img;
 		this.activation = activation;
+	}
+
+	public Product(int p_no, String p_name, String p_img, int p_count, String p_category, int p_price, int p_activation,
+			int sale_count) {
+		super();
+		this.p_no = p_no;
+		this.p_name = p_name;
+		this.p_img = p_img;
+		this.p_count = p_count;
+		this.p_category = p_category;
+		this.p_price = p_price;
+		this.p_activation = p_activation;
+		this.sale_count = sale_count;
 	}
 
 	// 메소드
@@ -131,7 +162,15 @@ public class Product {
 		this.activation = activation;
 	}
 
+	public int getSale_count() {
+		return sale_count;
+	}
 
+	public void setSale_count(int sale_count) {
+		this.sale_count = sale_count;
+	}
+
+	
 	
 	
 	

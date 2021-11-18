@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import domain.Product;
 import javafx.collections.FXCollections;
@@ -80,4 +81,65 @@ public class ProductDao {
 		}
 		return products;
 	}
+	//버튼 리스트
+	public ArrayList<Product> buttonlist() {
+		ArrayList<Product> buttons = new ArrayList<>();
+		String sql = "select p_no ,p_name,p_img, p_count ,p_category,p_price,p_activation  from product";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Product button = new Product(resultSet.getInt(1), resultSet.getString(2),
+						resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5), resultSet.getInt(6),resultSet.getInt(7));
+				buttons.add(button);
+			}
+			return buttons;
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}return buttons;
+	
+	}
+	//옵저버리스트
+	public ObservableList<Product> p_list() {
+		ObservableList<Product> buttons = FXCollections.observableArrayList();
+		String sql = "select p_no ,p_name,p_img, p_count ,p_category,p_price,p_activation  from product";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Product button = new Product(resultSet.getInt(1), resultSet.getString(2),
+						resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5), resultSet.getInt(6),resultSet.getInt(7));
+				buttons.add(button);
+			}
+			return buttons;
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}return buttons;
+	
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -36,22 +36,14 @@ public class MainpageController implements Initializable {
 	// m_no의 pc_no 조회
 	int p_no = PcDao.getPcDao().pcnocheck(m_no);
 
-	
-	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		System.out.println(loginid);
-		System.out.println(m_no);
-		System.out.println(p_no);
 
 		lblloginid.setText(loginid);
 		lblpcno.setText(p_no + "");
 		// m_no의 남은 요금 조회
 		lblprice.setText(""); // 임시
 
-		
-		
 		// 남은시간 실시간 db 조회
 		Thread thread1 = new Thread(new Runnable() {
 
