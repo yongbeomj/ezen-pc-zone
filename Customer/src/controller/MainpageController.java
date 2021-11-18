@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -24,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -154,6 +156,9 @@ public class MainpageController implements Initializable {
 		return instance;
 	}
 
+    @FXML
+    private ImageView imglogo;
+    
 	@FXML
 	private Button btnchatting;
 
@@ -266,6 +271,9 @@ public class MainpageController implements Initializable {
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.setTitle("EZEN PC ZONE");
+			FileInputStream logomark = new FileInputStream("src/image/logomark_ezen.png");
+			Image image = new Image(logomark);
+			stage.getIcons().add(image);
 			stage.show();
 		} catch (Exception e) {
 		}

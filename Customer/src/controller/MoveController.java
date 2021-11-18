@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -90,6 +91,9 @@ public class MoveController implements Initializable {
     	btnmove.getScene().getWindow().hide();
     	loadpage("c_login");
     }
+    
+    @FXML
+    private ImageView imglogo;
     
     @FXML
     private BorderPane borderpane;
