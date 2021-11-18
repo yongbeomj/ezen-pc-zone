@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -49,13 +50,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ProductorderController implements Initializable {
-//	
+
 	String loginid = LoginController.getinstance().getloginid(); // 로그인 id 조회
 	int m_no = MemberDao.getMemberDao().mnocheck(loginid); // m_no 조회
 	int p_no = PcDao.getPcDao().pcnocheck(m_no); // p_no 조회
-
+	DecimalFormat decimalFormat = new DecimalFormat("###,###"); // 금액 표기 규격
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		// 테이블 로드
 		producttableload();
 		
@@ -85,11 +88,6 @@ public class ProductorderController implements Initializable {
 			e.printStackTrace();
 		}
 
-		// 재고있는 제품 수
-//		int actcnt = ProductDao.getProductDao().actproductcount();
-		int columns = 3;
-		int rows = 5;
-
 		// 메뉴 버튼
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(20));
@@ -98,7 +96,12 @@ public class ProductorderController implements Initializable {
 
 		// 제품 내역 가져오기
 		ArrayList<Product> menulist = ProductDao.getProductDao().buttonlist();
-
+		
+		// 제품 수
+		int cnt = ProductDao.getProductDao().productcount();
+		int columns = 3; // 열
+		int rows = cnt/3 + 1; // 행
+		
 		// 버튼 생성
 		int num = (int) (columns * rows);
 		Menubutton[] menubuttons = new Menubutton[num];
@@ -108,29 +111,29 @@ public class ProductorderController implements Initializable {
 		label.setFont(Font.font(18));
 		grid.add(label, 0, 0);
 		
-		int z = 0;
-		for (int i = 0; i < num; i++) {
-			int t = i; // i 값 받아오기
-//			for (int j = 0; j < columns; j++) {
-
-				menubuttons[i] = new Menubutton();
+		int k = 0;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				int t = k; // 1씩 증가할 변수 생성
+				
+				menubuttons[t] = new Menubutton();
 				// 버튼에 제품값 설정
-				menubuttons[i].p_no = menulist.get(i).getP_no();
-				menubuttons[i].p_name = menulist.get(i).getP_name();
-				menubuttons[i].p_img = menulist.get(i).getP_img();
-				menubuttons[i].p_count = menulist.get(i).getP_count();
-				menubuttons[i].p_category = menulist.get(i).getP_category();
-				menubuttons[i].p_price = menulist.get(i).getP_price();
-				menubuttons[i].p_activation = menulist.get(i).getP_activation();
-				menubuttons[i].sale_count = 1;
+				menubuttons[t].p_no = menulist.get(t).getP_no();
+				menubuttons[t].p_name = menulist.get(t).getP_name();
+				menubuttons[t].p_img = menulist.get(t).getP_img();
+				menubuttons[t].p_count = menulist.get(t).getP_count();
+				menubuttons[t].p_category = menulist.get(t).getP_category();
+				menubuttons[t].p_price = menulist.get(t).getP_price();
+				menubuttons[t].p_activation = menulist.get(t).getP_activation();
+				menubuttons[t].sale_count = 1;
 				
 				// 이미지
-				File file = new File("src/image/" + menubuttons[i].p_img);
+				File file = new File("src/image/" + menubuttons[t].p_img + ".jpg");
 				Image image = new Image(file.toURI().toString());
-				
+
 				// 라벨
-				Label menuname = new Label(menubuttons[i].p_name);
-				Label menuprice = new Label(menubuttons[i].p_price+"");
+				Label menuname = new Label(menubuttons[t].p_name);
+				Label menuprice = new Label(decimalFormat.format(menubuttons[t].p_price)+"원");
 
 				// 라벨 2개 합치기
 				String temp = menuname.getText() + "      /      " + menuprice.getText();
@@ -139,10 +142,9 @@ public class ProductorderController implements Initializable {
 				
 				grid.setHalignment(label2, HPos.CENTER);
 				
-				menubuttons[i].button.setGraphic(new ImageView(image));
-				menubuttons[i].button.setWrapText(true);
-
-				menubuttons[i].button.setOnMouseClicked(e -> {
+				menubuttons[t].button.setGraphic(new ImageView(image));
+				menubuttons[t].button.setWrapText(true);
+				menubuttons[t].button.setOnMouseClicked(e -> {
 					// 같은 제품을 다시 선택할시 장바구니 개수 오르고 리턴
 					int c = 0;
 					for (Product temp2 : products) {
@@ -150,9 +152,9 @@ public class ProductorderController implements Initializable {
 							products.get(c).setSale_count( products.get(c).getSale_count() + 1);
 							productlist.refresh();
 							txtprice.setText(total_payment() + "");
-							
+//							txtprice.setText(decimalFormat.format(total_payment()));
 							return;
-						}
+						} 
 						c++;
 					}
 					// 장바구니에 넣기위해 product 변수에 button 정보 담기
@@ -163,16 +165,21 @@ public class ProductorderController implements Initializable {
 					products.add(pro);
 					producttableload();
 					// 총합 계산
-					txtprice.setText(total_payment() + "");
+					txtprice.setText(decimalFormat.format(total_payment()));
 				});
 
-				grid.add(menubuttons[i].button, z, ((i + 1) * 2 - 1));
-				grid.add(label2, z, ((i + 2) * 2 - 2));
+				grid.add(menubuttons[t].button, j, ((i + 1) * 2 - 1));
+				grid.add(label2, j, ((i + 2) * 2 - 2));
 				
-//			}
+				if (k == cnt-1) {
+					break;
+				} else {
+					k++;
+				}
+			}
 		}
 		scrollcp.setContent(grid);
-
+		
 	}
 
 	@FXML
@@ -314,7 +321,7 @@ public class ProductorderController implements Initializable {
 		});
 
 	}
-
+	
 	// 총 주문금액 구하는 메소드
 	public int total_payment() {
 		int total_payment = 0;
@@ -323,7 +330,7 @@ public class ProductorderController implements Initializable {
 		}
 		return total_payment;
 	}
-
+	
 	// 상품 총개수
 	public int po_count() {
 		int po_count = 0;

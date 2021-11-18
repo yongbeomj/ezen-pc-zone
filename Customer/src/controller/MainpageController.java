@@ -60,7 +60,6 @@ public class MainpageController implements Initializable {
 						//시간 감소
 						int t_remaintime = TimeDao.getTimeDao().remaintime(m_no);
 						TimeDao.getTimeDao().timeupdate(m_no, -1, t_remaintime);
-						System.out.println(t_remaintime);
 						// 시간 변경
 						int time = TimeDao.getTimeDao().remaintime(m_no);
 						int hour = time / (60 * 60);
