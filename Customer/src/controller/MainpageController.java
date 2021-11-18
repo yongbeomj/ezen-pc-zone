@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import dao.MemberDao;
 import dao.PcDao;
 import dao.TimeDao;
+import dao.TimeorderDao;
 import domain.Pc;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -27,33 +28,39 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class MainpageController implements Initializable {
-
 	// 로그인 id 조회
 	String loginid = LoginController.getinstance().getloginid();
-
 	// m_no 조회
 	int m_no = MemberDao.getMemberDao().mnocheck(loginid);
 	// m_no의 pc_no 조회
 	int p_no = PcDao.getPcDao().pcnocheck(m_no);
-
+	//사용시간 변수
+	int use_time=1;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		//요금 세팅
+		lblprice.setText(TimeorderDao.gettimeorderDao().new_time(m_no)+"");
 		lblloginid.setText(loginid);
-		lblpcno.setText(p_no + "");
+		lblpcno.setText(p_no+ "");
 		// m_no의 남은 요금 조회
-		lblprice.setText(""); // 임시
+		remaintime(1);
+		use_time(1);
+	}
 
+	//남은 시간 메소드
+	public void remaintime(int type) {
 		// 남은시간 실시간 db 조회
 		Thread thread1 = new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 				Runnable updater = new Runnable() {
 
 					@Override
 					public void run() {
-
+						//시간 감소
+						int t_remaintime = TimeDao.getTimeDao().remaintime(m_no);
+						TimeDao.getTimeDao().timeupdate(m_no, -1, t_remaintime);
+						System.out.println(t_remaintime);
 						// 시간 변경
 						int time = TimeDao.getTimeDao().remaintime(m_no);
 						int hour = time / (60 * 60);
@@ -61,10 +68,15 @@ public class MainpageController implements Initializable {
 						int second = time % 60;
 						lblremaintime.setText(hour + ":" + String.format("%02d", minute) + ":"
 								+ String.format("%02d", second));
-
+						if(t_remaintime<0) {
+							Alert alert =new Alert(AlertType.INFORMATION);
+							alert.setHeaderText("사용종료 되었습니다");
+							PcDao.getPcDao().pclogout(p_no, m_no);
+							btnlogout.getScene().getWindow().hide(); // 메인창을 끄고
+							LoginController.getinstance().loadpage("c_login"); // 로그인 창 활성화
+						}
 					}
 				};
-
 				while (true) {
 					try {
 						Thread.sleep(1000);
@@ -75,13 +87,63 @@ public class MainpageController implements Initializable {
 					Platform.runLater(updater);
 				}
 			}
-
 		});
-		thread1.start();
-
+		if(type==1) {
+			thread1.start();
+		}
+		if(type==2) {
+			try {
+				thread1.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+	
+	//사용시간 메소드
+	public void use_time(int type) {
+		// 사용시간 스레드
+		Thread thread2 = new Thread(new Runnable() {
 
+			@Override
+			public void run() {
+				Runnable updater = new Runnable() {
+					@Override
+					public void run() {
+						int hour1 = use_time / (60 * 60);
+						int minute1 = use_time / 60 - (hour1 * 60);
+						int second1 = use_time % 60;
+						lblusetime.setText(hour1 + ":" + String.format("%02d", minute1) + ":"
+								+ String.format("%02d", second1));
+						use_time++;
+					}
+				};
+				while (true) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException ex) {
+					}
 
+					// UI update is run on the Application thread
+					Platform.runLater(updater);
+				}
+			}
+		});
+		if(type==1) {
+			thread2.start();
+		}
+		if(type==2) {
+			try {
+				thread2.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	// 인스턴스화
 	public static MainpageController instance;
 
@@ -174,7 +236,7 @@ public class MainpageController implements Initializable {
 
 			Optional<ButtonType> optional = alert.showAndWait();
 			if (optional.get() == ButtonType.OK) {
-//				thread1.stop();
+				
 				btnpause.setText("시작");
 			}
 		} else {
@@ -185,7 +247,7 @@ public class MainpageController implements Initializable {
 
 			Optional<ButtonType> optional = alert.showAndWait();
 			if (optional.get() == ButtonType.OK) {
-//				thread2.start();
+				
 				btnpause.setText("일시정지");
 			}
 		}
@@ -210,31 +272,5 @@ public class MainpageController implements Initializable {
 		}
 	}
 
-//	// 일시정지 후 재시작 스레드
-//	Thread thread2 = new Thread(new Runnable() {
-//		@Override
-//		public void run() {
-//			Runnable updater = new Runnable() {
-//				@Override
-//				public void run() {
-//					// 시간 변경
-//					int time = TimeDao.getTimeDao().remaintimecheck(m_no);
-//					int hour = time / (60 * 60);
-//					int minute = time / 60 - (hour * 60);
-//					int second = time % 60;
-//					lblremaintime
-//							.setText(hour + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second));
-//				}
-//			};
-//
-//			while (true) {
-//				try {
-//					Thread.sleep(1000);
-//				} catch (InterruptedException ex) {
-//				}
-//				Platform.runLater(updater);
-//			}
-//		}
-//
-//	});
+
 }
