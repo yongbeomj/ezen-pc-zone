@@ -1,4 +1,4 @@
-package application;
+package domain;
 
 import java.io.InputStream;
 import java.io.OutputStream;
