@@ -39,6 +39,8 @@
 ![controller 구조](https://user-images.githubusercontent.com/91528977/141252930-469c57ef-914c-4e52-ac8f-602a59544ebb.png)
 
 ## DB 구조도  
-![dberd_project](https://user-images.githubusercontent.com/87436495/141254841-9cf60c83-c66a-4060-9119-4ddb8062dd78.png)
+- Table : Total 7EA  
+![211119_erd](https://user-images.githubusercontent.com/87436495/142559102-8652b249-c012-49e9-bef6-6fde86fbe444.png)
+
 
 
