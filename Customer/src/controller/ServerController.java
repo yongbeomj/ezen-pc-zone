@@ -22,6 +22,8 @@ public class ServerController implements Initializable {
 	
 	// 0.접속한 클라이언트를 저장하기 위한 리스트 
 	public static Vector<Client> clients = new Vector<>();
+	
+	
 			// Arraylist : 동기화x[단일스레드]		// Vector : 동기화o[멀티스레드]
 			// 동기화 : 동일한 메소드에 여러개 스레드가 호출 할때 호출순서 매기기 
 	

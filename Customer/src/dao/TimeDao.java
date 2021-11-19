@@ -42,10 +42,11 @@ public class TimeDao {
 			} else {
 				return 0;
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return 0;
 	}
-	
+
 	// 남은시간 조회
 	public int remaintimecheck(int mno) {
 		String sql = "select t_remaintime from time where m_no = ?";
@@ -58,10 +59,11 @@ public class TimeDao {
 			} else {
 				return 0;
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return 0;
 	}
-	
+
 //	// 최근 충전 요금 조회
 //	public int chargepricecheck(int ) {
 //		String sql = "select t_remaintime from time where m_no = ?";
@@ -77,8 +79,7 @@ public class TimeDao {
 //		} catch (Exception e) {}
 //		return 0;
 //	}
-	
-	
+
 	// 등록 날짜(충전 날짜) 조회
 	public String chargedatecheck(int mno) {
 		String sql = "select to_date from timeorder where m_no = ?";
@@ -91,10 +92,11 @@ public class TimeDao {
 			} else {
 				return null;
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return null;
 	}
-	
+
 	// 사용 시간
 	public int usetime(int m_no) {
 		String sql = "select t_usetime from time where m_no = ?";
@@ -127,20 +129,35 @@ public class TimeDao {
 			return 0;
 		}
 	}
-	
+
 	// 실시간 차감
-	
-	public boolean timeupdate (int m_no ,int add_time ,int time_remaintime) {
-	      String sql ="update time set t_remaintime=? where m_no=?";
-	      try {
-	         preparedStatement=connection.prepareStatement(sql);
-	         preparedStatement.setInt(1, time_remaintime+add_time);
-	         preparedStatement.setInt(2, m_no);
-	         preparedStatement.executeUpdate();
-	         return true ;
-	      }catch (Exception e) {
-	         return false;
-	      }
-	   }
+
+	public boolean timeupdate(int m_no, int add_time, int time_remaintime) {
+		String sql = "update time set t_remaintime=? where m_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, time_remaintime + add_time);
+			preparedStatement.setInt(2, m_no);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	// 실시간 사용시간 +1
+
+	public boolean usetimeupdate(int m_no, int add_time, int time_usetime) {
+		String sql = "update time set t_usetime=? where m_no=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, time_usetime + add_time);
+			preparedStatement.setInt(2, m_no);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }

@@ -44,7 +44,6 @@ public class ChattingController implements Initializable {
 				
 				// 2. 서버실행 메소드 
 				public void serverstart(int port) {
-					
 					try {
 						// 1. 서버소켓에 메모리 할당 
 						serverSocket = new ServerSocket();

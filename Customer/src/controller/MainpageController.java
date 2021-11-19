@@ -36,20 +36,26 @@ public class MainpageController implements Initializable {
 	int m_no = MemberDao.getMemberDao().mnocheck(loginid);
 	// m_no의 pc_no 조회
 	int p_no = PcDao.getPcDao().pcnocheck(m_no);
-	//사용시간 변수
-	int use_time=1;
+	// 사용시간 변수
+	int use_time = 1;
+	boolean sw = true;
+
+	// 사용시간 조회
+	int t_usetime = TimeDao.getTimeDao().usetime(m_no);
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//요금 세팅
-		lblprice.setText(TimeorderDao.gettimeorderDao().new_time(m_no)+"");
+		// 요금 세팅
+		lblprice.setText(TimeorderDao.gettimeorderDao().new_time(m_no) + "");
 		lblloginid.setText(loginid);
-		lblpcno.setText(p_no+ "");
+		lblpcno.setText(p_no + "");
 		// m_no의 남은 요금 조회
 		remaintime(1);
 		use_time(1);
+
 	}
 
-	//남은 시간 메소드
+	// 남은 시간 메소드
 	public void remaintime(int type) {
 		// 남은시간 실시간 db 조회
 		Thread thread1 = new Thread(new Runnable() {
@@ -59,22 +65,25 @@ public class MainpageController implements Initializable {
 
 					@Override
 					public void run() {
-						//시간 감소
-						int t_remaintime = TimeDao.getTimeDao().remaintime(m_no);
-						TimeDao.getTimeDao().timeupdate(m_no, -1, t_remaintime);
-						// 시간 변경
-						int time = TimeDao.getTimeDao().remaintime(m_no);
-						int hour = time / (60 * 60);
-						int minute = time / 60 - (hour * 60);
-						int second = time % 60;
-						lblremaintime.setText(hour + ":" + String.format("%02d", minute) + ":"
-								+ String.format("%02d", second));
-						if(t_remaintime<0) {
-							Alert alert =new Alert(AlertType.INFORMATION);
-							alert.setHeaderText("사용종료 되었습니다");
-							PcDao.getPcDao().pclogout(p_no, m_no);
-							btnlogout.getScene().getWindow().hide(); // 메인창을 끄고
-							LoginController.getinstance().loadpage("c_login"); // 로그인 창 활성화
+
+						if (sw) {
+							// 시간 감소
+							int t_remaintime = TimeDao.getTimeDao().remaintime(m_no);
+							TimeDao.getTimeDao().timeupdate(m_no, -1, t_remaintime);
+							// 시간 변경
+							int time = TimeDao.getTimeDao().remaintime(m_no);
+							int hour = time / (60 * 60);
+							int minute = time / 60 - (hour * 60);
+							int second = time % 60;
+							lblremaintime.setText(
+									hour + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second));
+							if (t_remaintime < 0) {
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setHeaderText("사용종료 되었습니다");
+								PcDao.getPcDao().pclogout(p_no, m_no);
+								btnlogout.getScene().getWindow().hide(); // 메인창을 끄고
+								LoginController.getinstance().loadpage("c_login"); // 로그인 창 활성화
+							}
 						}
 					}
 				};
@@ -89,10 +98,10 @@ public class MainpageController implements Initializable {
 				}
 			}
 		});
-		if(type==1) {
+		if (type == 1) {
 			thread1.start();
 		}
-		if(type==2) {
+		if (type == 2) {
 			try {
 				thread1.wait();
 			} catch (InterruptedException e) {
@@ -101,8 +110,8 @@ public class MainpageController implements Initializable {
 			}
 		}
 	}
-	
-	//사용시간 메소드
+
+	// 사용시간 메소드
 	public void use_time(int type) {
 		// 사용시간 스레드
 		Thread thread2 = new Thread(new Runnable() {
@@ -112,12 +121,16 @@ public class MainpageController implements Initializable {
 				Runnable updater = new Runnable() {
 					@Override
 					public void run() {
-						int hour1 = use_time / (60 * 60);
-						int minute1 = use_time / 60 - (hour1 * 60);
-						int second1 = use_time % 60;
-						lblusetime.setText(hour1 + ":" + String.format("%02d", minute1) + ":"
-								+ String.format("%02d", second1));
-						use_time++;
+						if (sw) {
+							int t_usetime = TimeDao.getTimeDao().usetime(m_no);
+							TimeDao.getTimeDao().usetimeupdate(m_no, 1, t_usetime);
+							int hour1 = use_time / (60 * 60);
+							int minute1 = use_time / 60 - (hour1 * 60);
+							int second1 = use_time % 60;
+							lblusetime.setText(hour1 + ":" + String.format("%02d", minute1) + ":"
+									+ String.format("%02d", second1));
+							use_time++;
+						}
 					}
 				};
 				while (true) {
@@ -131,10 +144,10 @@ public class MainpageController implements Initializable {
 				}
 			}
 		});
-		if(type==1) {
+		if (type == 1) {
 			thread2.start();
 		}
-		if(type==2) {
+		if (type == 2) {
 			try {
 				thread2.wait();
 			} catch (InterruptedException e) {
@@ -143,8 +156,7 @@ public class MainpageController implements Initializable {
 			}
 		}
 	}
-	
-	
+
 	// 인스턴스화
 	public static MainpageController instance;
 
@@ -156,9 +168,9 @@ public class MainpageController implements Initializable {
 		return instance;
 	}
 
-    @FXML
-    private ImageView imglogo;
-    
+	@FXML
+	private ImageView imglogo;
+
 	@FXML
 	private Button btnchatting;
 
@@ -240,7 +252,7 @@ public class MainpageController implements Initializable {
 
 			Optional<ButtonType> optional = alert.showAndWait();
 			if (optional.get() == ButtonType.OK) {
-				
+				sw = false;
 				btnpause.setText("시작");
 			}
 		} else {
@@ -251,7 +263,7 @@ public class MainpageController implements Initializable {
 
 			Optional<ButtonType> optional = alert.showAndWait();
 			if (optional.get() == ButtonType.OK) {
-				
+				sw = true;
 				btnpause.setText("일시정지");
 			}
 		}
@@ -278,6 +290,5 @@ public class MainpageController implements Initializable {
 		} catch (Exception e) {
 		}
 	}
-
 
 }
