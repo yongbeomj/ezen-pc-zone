@@ -53,11 +53,10 @@
 ### 6.3. Project : Client  
 ![client](https://user-images.githubusercontent.com/87436495/142762387-c6fa9b56-8aa5-4e9d-b09e-cb1bcbbe68b7.PNG)
 
-
-
 ## 7. DB 구조도  
 - Table : Total 7EA  
 ![211119_erd](https://user-images.githubusercontent.com/87436495/142559102-8652b249-c012-49e9-bef6-6fde86fbe444.png)
 
+<!-- ## 8. 보완할 점
 
-
+## 9. 느낀점 -->
