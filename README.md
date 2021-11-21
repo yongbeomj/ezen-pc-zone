@@ -1,6 +1,6 @@
 # EZEN PC ZONE
 ## contents
-1. 개요
+[1. 개요](https://github.com/yongbeomj/ezen-pc-zone#1-%EA%B0%9C%EC%9A%94)  
 2. 개발일정
 3. 역할분담
 4. 개발환경
