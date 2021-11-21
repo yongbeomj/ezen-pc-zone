@@ -1,16 +1,24 @@
 # EZEN PC ZONE
+## contents
+1. 개요
+2. 개발일정
+3. 역할분담
+4. 개발환경
+5. 화면 설계도
+6. Controller 구조도
+7. DB 구조도
 
-## 개요
-### 목적
+## 1. 개요
+### 1.1. 목적
 - 피시방 이용자 및 관리자의 편의성 증진
 
-### 프로그램 사용자
+### 1.2. 프로그램 사용자
 - 피시방 이용자 (손님)
 - 피시방 관리자 (피시방 대표, 아르바이트생)
 
-## 개발 일정
+## 2. 개발 일정
 - 기간 : 2021.11.05 ~ 2021.11.22  
-- History (차후 계획 포함)
+- History
 
 |날짜|내용|
 |----|----|
@@ -23,22 +31,31 @@
 |2021.11.17 ~ 2021.11.21|프로젝트 연결 및 오류 수정|
 |2021.11.22|프로젝트 발표|
 
-## 역할 분담  
+## 3. 역할 분담  
 - 신우현 : Admin Project  
 - 이민욱 : Kiosk Project + Admin Project(일부)
 - 장용범 : Member Project  
   
-## 개발 환경
+## 4. 개발 환경
 - 운영체제 : Windows10  
 - Teck Stack : Java, Javafx, Mysql, Eclipse, SceneBuilder, Git  
 
-## 화면 설계도  
-![Untitled Diagram drawio (1)](https://user-images.githubusercontent.com/91528966/141255853-c32f8804-4d3d-435a-98a8-e24c86308ff9.png)
+## 5. 화면 설계도  
+![화면 구성도](https://user-images.githubusercontent.com/87436495/142762712-17313b47-4608-425c-9294-7437abf2d847.PNG)
 
-## Controller 구조도  
-![controller 구조](https://user-images.githubusercontent.com/91528977/141252930-469c57ef-914c-4e52-ac8f-602a59544ebb.png)
+## 6. Controller 구조도  
+### 6.1. Project : Kiosk  
+![kiosk](https://user-images.githubusercontent.com/87436495/142762315-4e65330e-3ecb-44f2-a4cf-8633015ab73e.PNG)
 
-## DB 구조도  
+### 6.2. Project : Admin  
+![admin](https://user-images.githubusercontent.com/87436495/142762378-92cf73c5-05f9-44b3-9453-a6a155ac5840.PNG)
+
+### 6.3. Project : Client  
+![client](https://user-images.githubusercontent.com/87436495/142762387-c6fa9b56-8aa5-4e9d-b09e-cb1bcbbe68b7.PNG)
+
+
+
+## 7. DB 구조도  
 - Table : Total 7EA  
 ![211119_erd](https://user-images.githubusercontent.com/87436495/142559102-8652b249-c012-49e9-bef6-6fde86fbe444.png)
 
