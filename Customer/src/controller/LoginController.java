@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.MemberDao;
+import dao.PcDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,84 +26,108 @@ import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 	
+
+	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		lblconfirm.setText("");
+		
+		
 	}
-
 
 	// 인스턴스화
 	private static LoginController instance;
+
 	public LoginController() {
 		instance = this;
 	}
+
 	public static LoginController getinstance() {
 		return instance;
 	}
 
+	@FXML
+	private ImageView imglogo;
 
-    @FXML
-    private ImageView imglogo;
-	
-    @FXML
-    private Button btnfindid;
+	@FXML
+	private Button btnfindid;
 
-    @FXML
-    private Button btnfindpw;
+	@FXML
+	private Button btnfindpw;
 
-    @FXML
-    private Button btnlogin;
+	@FXML
+	private Button btnlogin;
 
-    @FXML
-    private Label lblconfirm;
+	@FXML
+	private Label lblconfirm;
 
-    @FXML
-    private AnchorPane loginpane;
+	@FXML
+	private AnchorPane loginpane;
 
-    @FXML
-    private TextField txtid;
+	@FXML
+	private TextField txtid;
 
-    @FXML
-    private PasswordField txtpassword;
+	@FXML
+	private PasswordField txtpassword;
 
-    @FXML
-    void findid(ActionEvent event) {
-    	btnfindid.getScene().getWindow().hide();
+	@FXML
+	void findid(ActionEvent event) {
+		btnfindid.getScene().getWindow().hide();
 		loadpage("c_findid");
-    }
+	}
 
-    @FXML
-    void findpw(ActionEvent event) {
-       	btnfindpw.getScene().getWindow().hide();
-    	loadpage("c_findpw");
-    }
+	@FXML
+	void findpw(ActionEvent event) {
+		btnfindpw.getScene().getWindow().hide();
+		loadpage("c_findpw");
+	}
 
-    int m_no = 0;
-    
-    @FXML
-    void login(ActionEvent event) {
-    	boolean result = MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
-		if (result) {
-			lblconfirm.setText(" 로그인 성공 ");
-			Alert alert = new Alert( AlertType.CONFIRMATION );
-	    	alert.setContentText("로그인");
-	    	alert.setHeaderText(txtid.getText() + " 님 방문해주셔서 감사합니다.");
-	    	alert.setTitle("로그인");
-	    	alert.showAndWait();
-			btnlogin.getScene().getWindow().hide();
-	    	loadpage("c_mainpage");
-		} else {
-			lblconfirm.setText(" 로그인 실패 [동일한 정보가 없습니다] ");
+	int[] pcmno = new int[20];
+	
+	@FXML
+	void login(ActionEvent event) {
+		
+		boolean check = true;
+		boolean result = MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
+
+		for (int i = 0; i < pcmno.length; i++) {
+			int m_no = PcDao.getPcDao().pcmno();
+			pcmno[i] = m_no;
+			String id = MemberDao.getMemberDao().midcheck(pcmno[i]);
+			if (txtid.getText().equals(id)) {
+				if (result) {
+					lblconfirm.setText(" 로그인 성공 ");
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setContentText("로그인");
+					alert.setHeaderText(txtid.getText() + " 님 방문해주셔서 감사합니다.");
+					alert.setTitle("로그인");
+					alert.showAndWait();
+					btnlogin.getScene().getWindow().hide();
+					loadpage("c_mainpage");
+				} else {
+					lblconfirm.setText(" 로그인 실패 [동일한 정보가 없습니다] ");
+				}
+				break;
+			} else {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setContentText("로그인");
+				alert.setHeaderText("키오스크에서 자리선택을 먼저 해주시기 바랍니다.");
+				alert.setTitle("로그인");
+				alert.showAndWait();
+				break;
+			}
+			
 		}
-		
-		
+
 	}
 
 	public void loadpage(String page) {
 		Stage stage = new Stage();
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/"+page+".fxml"));
-			Scene scene = new Scene( parent );
+			Parent parent = FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.setTitle("EZEN PC ZONE");
@@ -110,12 +135,12 @@ public class LoginController implements Initializable {
 			Image image = new Image(logomark);
 			stage.getIcons().add(image);
 			stage.show();
+		} catch (Exception e) {
 		}
-		catch (Exception e) {}
 	}
-	
+
 	public String getloginid() {
 		return txtid.getText();
 	}
-	
+
 }
