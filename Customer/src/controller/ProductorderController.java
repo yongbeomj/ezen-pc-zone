@@ -229,7 +229,6 @@ public class ProductorderController implements Initializable {
 
 	@FXML
 	void countchange(ActionEvent event) {
-		System.out.println(product.getP_name());
 		// 1.장바구니를 반복문 돌려
 		for (Product temp : products) {
 			// 2.장바구니 안의 제품번호와 마우스 선택한 제품번호값이 같으면
@@ -281,7 +280,6 @@ public class ProductorderController implements Initializable {
 							temp.getP_category(), temp.getSale_count(), temp.getP_price() * temp.getSale_count());
 					OrderdetailDao.getOrderdetailDao().orderdetail(orderdetail);
 				}
-				System.out.println(po_no);
 				Alert alert2 = new Alert(AlertType.INFORMATION);
 				alert2.setHeaderText("주문완료");
 				alert2.showAndWait();

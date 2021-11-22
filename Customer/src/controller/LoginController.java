@@ -25,16 +25,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
-	
 
 	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		lblconfirm.setText("");
-		
-		
+
 	}
 
 	// 인스턴스화
@@ -84,42 +82,38 @@ public class LoginController implements Initializable {
 		loadpage("c_findpw");
 	}
 
-	int[] pcmno = new int[20];
-	
 	@FXML
 	void login(ActionEvent event) {
+		// 로그인 id 조회
+		String loginid = LoginController.getinstance().getloginid();
+		// m_no 조회
+		int m_no = MemberDao.getMemberDao().mnocheck(loginid);
+		// m_no의 pc_no 조회
+		int p_no = PcDao.getPcDao().pcnocheck(m_no);
 		
-		boolean check = true;
+		boolean check = PcDao.getPcDao().mnocheck(p_no);
 		boolean result = MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
-
-		for (int i = 0; i < pcmno.length; i++) {
-			int m_no = PcDao.getPcDao().pcmno();
-			pcmno[i] = m_no;
-			String id = MemberDao.getMemberDao().midcheck(pcmno[i]);
-			if (txtid.getText().equals(id)) {
-				if (result) {
-					lblconfirm.setText(" 로그인 성공 ");
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setContentText("로그인");
-					alert.setHeaderText(txtid.getText() + " 님 방문해주셔서 감사합니다.");
-					alert.setTitle("로그인");
-					alert.showAndWait();
-					btnlogin.getScene().getWindow().hide();
-					loadpage("c_mainpage");
-				} else {
-					lblconfirm.setText(" 로그인 실패 [동일한 정보가 없습니다] ");
-				}
-				break;
-			} else {
+		if (check) {
+			if (result) {
+				lblconfirm.setText(" 로그인 성공 ");
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setContentText("로그인");
-				alert.setHeaderText("키오스크에서 자리선택을 먼저 해주시기 바랍니다.");
+				alert.setHeaderText(txtid.getText() + " 님 방문해주셔서 감사합니다.");
 				alert.setTitle("로그인");
 				alert.showAndWait();
-				break;
+				btnlogin.getScene().getWindow().hide();
+				loadpage("c_mainpage");
+			} else {
+				lblconfirm.setText(" 로그인 실패 [동일한 정보가 없습니다] ");
 			}
-			
+		} else {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setContentText("로그인");
+			alert.setHeaderText("키오스크에서 자리선택을 해주시기 바랍니다");
+			alert.setTitle("로그인");
+			alert.showAndWait();
 		}
+		
 
 	}
 

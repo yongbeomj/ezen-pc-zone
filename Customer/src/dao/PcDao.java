@@ -32,21 +32,6 @@ public class PcDao {
 		}
 	}
 
-	// 전체 m_no 조회
-	public int pcmno() {
-		String sql = "select m_no from pc";
-		try {
-			preparedStatement = connection.prepareStatement(sql);
-			resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {
-				return resultSet.getInt(1);
-			} else {
-				return 0;
-			}
-		} catch (Exception e) {
-		}
-		return 0;
-	}
 
 	// 메소드
 	public int pcnocheck(int m_no) {
@@ -63,6 +48,23 @@ public class PcDao {
 		} catch (Exception e) {
 		}
 		return 0;
+	}
+
+	// pcno -> mno
+	public boolean mnocheck(int p_no) {
+		String sql = "select m_no from pc where pc_no = ?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, p_no);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+		}
+		return false;
 	}
 
 	// 피시 포트번호 찾기
