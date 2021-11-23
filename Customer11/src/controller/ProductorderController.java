@@ -285,7 +285,7 @@ public class ProductorderController implements Initializable {
 				Alert alert2 = new Alert(AlertType.INFORMATION);
 				alert2.setHeaderText("주문완료");
 				alert2.showAndWait();
-				btndelete.getScene().getWindow().hide(); // 메인창을 끄고
+				btndelete.getScene().getWindow().hide();
 				LoginController.getinstance().loadpage("c_mainpage"); // 로그인 창 활성화
 			}
 
