@@ -8,6 +8,10 @@
 [6. Controller 구조도](https://github.com/yongbeomj/ezen-pc-zone#6-controller-%EA%B5%AC%EC%A1%B0%EB%8F%84)  
 [7. DB 구조도](https://github.com/yongbeomj/ezen-pc-zone#7-db-%EA%B5%AC%EC%A1%B0%EB%8F%84)  
 
+
+## 0. 실행 화면  
+![Hnet com-image](https://user-images.githubusercontent.com/87436495/142991773-99be5154-0215-4664-adf5-9802307e65e7.gif)
+
 ## 1. 개요
 ### 1.1. 목적
 - 피시방 이용자 및 관리자의 편의성 증진
