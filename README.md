@@ -1,5 +1,7 @@
 # EZEN PC ZONE
+
 ## contents
+[0. 실행화면](https://github.com/yongbeomj/ezen-pc-zone/blob/main/README.md#0-%EC%8B%A4%ED%96%89-%ED%99%94%EB%A9%B4)  
 [1. 개요](https://github.com/yongbeomj/ezen-pc-zone#1-%EA%B0%9C%EC%9A%94)  
 [2. 개발일정](https://github.com/yongbeomj/ezen-pc-zone#2-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A0%95)  
 [3. 역할분담](https://github.com/yongbeomj/ezen-pc-zone#3-%EC%97%AD%ED%95%A0-%EB%B6%84%EB%8B%B4)  
@@ -7,6 +9,9 @@
 [5. 화면 설계도](https://github.com/yongbeomj/ezen-pc-zone#5-%ED%99%94%EB%A9%B4-%EC%84%A4%EA%B3%84%EB%8F%84)  
 [6. Controller 구조도](https://github.com/yongbeomj/ezen-pc-zone#6-controller-%EA%B5%AC%EC%A1%B0%EB%8F%84)  
 [7. DB 구조도](https://github.com/yongbeomj/ezen-pc-zone#7-db-%EA%B5%AC%EC%A1%B0%EB%8F%84)  
+
+## 0. 실행 화면  
+![Hnet com-image](https://user-images.githubusercontent.com/87436495/142991773-99be5154-0215-4664-adf5-9802307e65e7.gif)
 
 ## 1. 개요
 ### 1.1. 목적
