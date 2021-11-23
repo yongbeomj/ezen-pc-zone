@@ -1,5 +1,6 @@
 # EZEN PC ZONE
 ## contents
+[0. 실행화면](https://github.com/yongbeomj/ezen-pc-zone/blob/main/README.md#0-%EC%8B%A4%ED%96%89-%ED%99%94%EB%A9%B4)  
 [1. 개요](https://github.com/yongbeomj/ezen-pc-zone#1-%EA%B0%9C%EC%9A%94)  
 [2. 개발일정](https://github.com/yongbeomj/ezen-pc-zone#2-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A0%95)  
 [3. 역할분담](https://github.com/yongbeomj/ezen-pc-zone#3-%EC%97%AD%ED%95%A0-%EB%B6%84%EB%8B%B4)  
