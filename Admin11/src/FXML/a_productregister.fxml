@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="744.0" prefWidth="1189.0" style="-fx-background-color: #e9e9e9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductRegisterController">
+   <children>
+      <Label layoutX="114.0" layoutY="439.0" prefHeight="14.0" prefWidth="52.0" text="category" />
+      <Label layoutX="118.0" layoutY="375.0" prefHeight="14.0" prefWidth="52.0" text="Price" />
+      <TextField fx:id="txtpprice" layoutX="179.0" layoutY="372.0" prefHeight="22.0" prefWidth="298.0" />
+      <Label layoutX="114.0" layoutY="500.0" text="이미지 등록" />
+      <Label fx:id="lblimgpath" layoutX="113.0" layoutY="534.0" prefHeight="14.0" prefWidth="315.0" text="이미지 경로">
+         <font>
+            <Font name="Trebuchet MS" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnimgadd" layoutX="234.0" layoutY="495.0" mnemonicParsing="false" onAction="#imgadd" text="이미지 등록">
+         <font>
+            <Font name="Trebuchet MS" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="pimg" fitHeight="373.0" fitWidth="530.0" layoutX="592.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnregister" layoutX="797.0" layoutY="590.0" mnemonicParsing="false" onAction="#register" text="제품등록" />
+      <Line endX="-9.0" endY="-173.0" layoutX="558.0" layoutY="348.0" startX="-9.0" startY="273.0" />
+      <Label layoutX="581.0" layoutY="173.0" prefHeight="22.0" prefWidth="159.0" text="- Product Image">
+         <font>
+            <Font name="Trebuchet MS" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="117.0" layoutY="311.0" prefHeight="14.0" prefWidth="52.0" text="Count" />
+      <Label layoutX="119.0" layoutY="251.0" prefHeight="14.0" prefWidth="31.0" text="Name" />
+      <TextField fx:id="txtpname" layoutX="179.0" layoutY="248.0" prefHeight="22.0" prefWidth="298.0" />
+      <RadioButton fx:id="otp1" layoutX="183.0" layoutY="438.0" mnemonicParsing="false" text="Drink">
+         <toggleGroup>
+            <ToggleGroup fx:id="category" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="otp2" layoutX="245.0" layoutY="438.0" mnemonicParsing="false" text="Snack" toggleGroup="$category" />
+      <RadioButton fx:id="otp3" layoutX="310.0" layoutY="438.0" mnemonicParsing="false" text="Noodle" toggleGroup="$category" />
+      <Button fx:id="btnback" layoutX="893.0" layoutY="590.0" mnemonicParsing="false" onAction="#back" prefHeight="22.0" prefWidth="64.0" text="취소" />
+      <Label layoutX="248.0" layoutY="106.0" text="Product">
+         <font>
+            <Font name="Trebuchet MS Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="248.0" layoutY="44.0" text="Register">
+         <font>
+            <Font name="Trebuchet MS Bold" size="53.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="otp4" layoutX="380.0" layoutY="438.0" mnemonicParsing="false" text="rice" toggleGroup="$category" />
+      <RadioButton fx:id="otp5" layoutX="428.0" layoutY="438.0" mnemonicParsing="false" text="food" toggleGroup="$category" />
+      <RadioButton fx:id="otp6" layoutX="485.0" layoutY="438.0" mnemonicParsing="false" text="acc" toggleGroup="$category" />
+      <TextField fx:id="txtpcount" layoutX="180.0" layoutY="308.0" prefHeight="22.0" prefWidth="298.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="67.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@KakaoTalk_20211108_162454593.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
