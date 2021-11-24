@@ -11,7 +11,7 @@
 
 
 ## 0. 실행 화면  
-※ 화면 클릭 시 Youtube 연결  
+※ 이미지 클릭 시 프로그램 실행 녹화본 재생 (Youtube)  
   
 [![캡처](https://user-images.githubusercontent.com/87436495/143043843-5598ff63-e85a-46cb-a0b1-c45930ce6e6f.PNG)](https://www.youtube.com/watch?v=xOvRwqN2yLM)
 
